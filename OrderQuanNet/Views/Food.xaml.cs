@@ -48,5 +48,14 @@ namespace OrderQuanNet.Views
             // Hiển thị cửa sổ mới
             detailWindow.ShowDialog();
         }
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            // Tạo một cửa sổ mới của loại Detail
+            Add addWindow = new Add();
+
+            // Hiển thị cửa sổ mới
+            addWindow.ShowDialog();
+        }
+
     }
 }

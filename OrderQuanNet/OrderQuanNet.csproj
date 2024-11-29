@@ -9,10 +9,18 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Resources\Images\1h.png" />
+      <None Remove="Resources\Images\add.png" />
       <None Remove="Resources\Images\drink.png" />
       <None Remove="Resources\Images\food.png" />
       <None Remove="Resources\Images\phoboquannet.png" />
       <None Remove="Resources\Images\time.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Resources\Images\1h.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +30,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Resource Include="Resources\Images\add.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
       <Resource Include="Resources\Images\drink.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
@@ -34,6 +45,18 @@
       <Resource Include="Resources\Images\time.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\Food.xaml.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Update="Views\Food.xaml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Page>
     </ItemGroup>
 
 </Project>

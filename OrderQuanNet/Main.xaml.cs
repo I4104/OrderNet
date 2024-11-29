@@ -50,7 +50,7 @@ namespace OrderQuanNet
 
         private void DrinkTab(object sender, EventArgs e) { SwitchTab(TabType.Drink, new Drink()); }
 
-        private void TimeTab(object sender, EventArgs e) { SwitchTab(TabType.Time, new Food()); }
+        private void TimeTab(object sender, EventArgs e) { SwitchTab(TabType.Time, new Time()); }
 
         private void SwitchTab(TabType tabType, ContentControl content)
         {
@@ -119,7 +119,7 @@ namespace OrderQuanNet
                     ContentManager.Content = new Drink();
                     break;
                 case TabType.Time:
-                    ContentManager.Content = new Food();
+                    ContentManager.Content = new Time();
                     break;
             }
         }

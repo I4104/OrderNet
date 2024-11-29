@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace OrderQuanNet.Views
 {
     /// <summary>
-    /// Interaction logic for Food.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class Drink : UserControl
+    public partial class Time : UserControl
     {
-        public Drink()
+        public Time()
         {
             InitializeComponent();
         }
-
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             UpdateRows();
@@ -38,7 +37,7 @@ namespace OrderQuanNet.Views
         {
             double itemWidth = 160;
             int rowCount = (int)(this.ActualWidth / itemWidth);
-            DrinkGrid.Columns = rowCount;
+            TimeGrid.Columns = rowCount;
         }
         private void PopupTab(object sender, EventArgs e)
         {
@@ -56,7 +55,5 @@ namespace OrderQuanNet.Views
             // Hiển thị cửa sổ mới
             addWindow.ShowDialog();
         }
-
-
     }
 }
