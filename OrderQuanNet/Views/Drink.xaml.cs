@@ -18,9 +18,9 @@ namespace OrderQuanNet.Views
     /// <summary>
     /// Interaction logic for Food.xaml
     /// </summary>
-    public partial class Food : UserControl
+    public partial class Drink : UserControl
     {
-        public Food()
+        public Drink()
         {
             InitializeComponent();
         }
@@ -38,7 +38,7 @@ namespace OrderQuanNet.Views
         {
             double itemWidth = 160;
             int rowCount = (int)(this.ActualWidth / itemWidth);
-            FoodGrid.Columns = rowCount;
+            DrinkGrid.Columns = rowCount;
         }
         private void PopupTab(object sender, EventArgs e)
         {
@@ -48,5 +48,6 @@ namespace OrderQuanNet.Views
             // Hiển thị cửa sổ mới
             detailWindow.ShowDialog();
         }
+
     }
 }

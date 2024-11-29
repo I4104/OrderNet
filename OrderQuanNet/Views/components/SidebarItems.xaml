@@ -13,6 +13,6 @@
         </Grid.ColumnDefinitions>
 
         <Image Grid.Column="0" Stretch="Fill" Source="{Binding ItemName, RelativeSource={RelativeSource AncestorType=UserControl}}" x:Name="Icon" />
-        <TextBlock Grid.Column="1" FontSize="13" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" Margin="10, 2, 0, 0" Text="{Binding ItemName, RelativeSource={RelativeSource AncestorType=UserControl}}"></TextBlock>
+        <TextBlock x:Name="title" Grid.Column="1" FontSize="13" FontWeight="Bold" Foreground="DarkSlateGray" VerticalAlignment="Center" Margin="10, 2, 0, 0" Text="{Binding ItemName, RelativeSource={RelativeSource AncestorType=UserControl}}"></TextBlock>
     </Grid>
 </UserControl>

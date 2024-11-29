@@ -8,16 +8,17 @@
              d:DesignHeight="150" d:DesignWidth="250">
     <UserControl.Resources>
         <Style TargetType="{ x:Type TextBlock }">
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+            <Setter Property="Foreground" Value="DarkSlateGray"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
         </Style>
     </UserControl.Resources>
     <Border x:Name="userCardComponent" CornerRadius="10" Padding="20, 10, 10, 0">
         <Border.Background>
-            <LinearGradientBrush StartPoint="0,0.25" EndPoint="0.5,1">
-                <GradientStop Color="#020024" Offset="0" />
-                <GradientStop Color="#093679" Offset="0.35" />
-                <GradientStop Color="#00d4ff" Offset="1" />
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#BA8721" Offset="0" />
+                <GradientStop Color="#FCF6BA" Offset="0.5" />
+                <GradientStop Color="#BF953F" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
 
@@ -32,7 +33,7 @@
 
             <StackPanel Grid.Row="1" VerticalAlignment="Center">
                 <TextBlock>Member</TextBlock>
-                <TextBlock Text="{Binding UserName, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="Goldenrod" FontSize="18" FontWeight="Bold" FontFamily="Comic Sans MS" Margin="10,5,0,0">I4104</TextBlock>
+                <TextBlock Text="{Binding UserName, RelativeSource={RelativeSource AncestorType=UserControl}}" Foreground="Black" FontSize="18" FontWeight="Bold" FontFamily="Comic Sans MS" Margin="10,5,0,0">I4104</TextBlock>
             </StackPanel>
 
             <TextBlock Text="{Binding UserType, RelativeSource={RelativeSource AncestorType=UserControl}}" Grid.Row="2">Account Type: Member</TextBlock>

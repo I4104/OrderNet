@@ -10,7 +10,7 @@
         BorderThickness="0"
         BorderBrush="Transparent"
         Title="ORDER DỊCH VỤ QUÁN NET" MinHeight="650" MinWidth="1000" WindowStyle="SingleBorderWindow" 
-        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" SizeChanged="Window_SizeChanged" Loaded="Window_Loaded" StateChanged="Window_StateChanged">
+        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" SizeChanged="ReloadLayouts" Loaded="ReloadLayouts" StateChanged="ReloadLayouts">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Green"/>
@@ -58,14 +58,14 @@
                     <StackPanel>
                         <TextBlock FontSize="12" FontWeight="Bold" Foreground="DimGray">CỬA HÀNG TIỆN LỢI</TextBlock>
 
-                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5">
-                            <components:SidebarItems ItemIcon="\Resources\Images\food.png" ItemName="Đồ ăn" />
+                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="FoodTab">
+                            <components:SidebarItems x:Name="FoodTabItem" ItemActive="true" ItemIcon="\Resources\Images\food.png" ItemName="Đồ ăn" />
                         </Button>
-                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5">
-                            <components:SidebarItems ItemIcon="\Resources\Images\drink.png" ItemName="Đồ uống" />
+                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="DrinkTab">
+                            <components:SidebarItems x:Name="DrinkTabItem" ItemActive="false" ItemIcon="\Resources\Images\drink.png" ItemName="Đồ uống" />
                         </Button>
-                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5">
-                            <components:SidebarItems ItemIcon="\Resources\Images\time.png" ItemName="Giờ chơi" />
+                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="TimeTab">
+                            <components:SidebarItems x:Name="TimeTabItem" ItemActive="false" ItemIcon="\Resources\Images\time.png" ItemName="Giờ chơi" />
                         </Button>
                     </StackPanel>
                 </Border>
@@ -87,22 +87,25 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Button Background="Transparent" Grid.Column="0">
+                            <Button Click="OrderToggle" Background="Transparent" Grid.Column="0">
                                 <Border CornerRadius="5" Padding="3" Background="white">
-                                    <TextBlock FontSize="12" FontWeight="Bold">Giỏ hàng</TextBlock>
+                                    <TextBlock x:Name="OrderTab" FontSize="12" FontWeight="Bold">Giỏ hàng</TextBlock>
                                 </Border>
                             </Button>
-
-                            <Button Background="Transparent" Grid.Column="1">
+                            
+                            <Border Grid.Column="1" Width="1" BorderThickness="1" BorderBrush="Black" Background="Black"></Border>
+                            
+                            <Button Click="HistoryToggle" Background="Transparent" Grid.Column="2">
                                 <Border CornerRadius="5" Padding="3" Background="white">
-                                    <TextBlock FontSize="12" FontWeight="Bold">Lịch sử</TextBlock>
+                                    <TextBlock x:Name="HistoryTab" FontSize="12" FontWeight="Bold">Lịch sử</TextBlock>
                                 </Border>
                             </Button>
                         </Grid>
                     </StackPanel>
-                    
+                    <ContentControl MinHeight="200" Grid.Row="2" Margin="0, 5, 0, 0" x:Name="RightBarManager" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 </Grid>
 
             </Border>

@@ -27,7 +27,7 @@ namespace OrderQuanNet.Views.components
         public UserCard()
         {
             InitializeComponent();
-            today.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            today.Text = "Today: " + DateTime.Now.ToString("dd/MM/yyyy");
         }
     }
 }
