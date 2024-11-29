@@ -15,6 +15,7 @@ namespace OrderQuanNet
         private TabType currentTab = TabType.Food;
         private RightBarType currentRightBar = RightBarType.Orders;
 
+        
         public Main()
         {
             InitializeComponent();
@@ -22,11 +23,12 @@ namespace OrderQuanNet
         }
         private void SetInitialContent()
         {
+
             ContentManager.Content = new Food();
             RightBarManager.Content = new OrdersTab();
             SwitchOrderOrHistory(OrderTab);
         }
-
+        
         /**
           Xử lý logic
          */
