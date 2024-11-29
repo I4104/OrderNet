@@ -15,7 +15,7 @@
 
         <Image x:Name="ItemImage" Width="75" Height="75" Grid.Column="0" Stretch="UniformToFill" Source="{Binding ItemImage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
-        <StackPanel Grid.Column="1" Margin="15, 0, 0, 0">
+        <StackPanel Grid.Column="1" Margin="10, 0, 0, 0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
@@ -23,7 +23,7 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Phở bò LandMark" VerticalAlignment="Center" FontWeight="Bold" Foreground="Red" FontSize="16"/>
+                <TextBlock Grid.Row="0" Text="Phở bò LandMark" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="Red" FontSize="16"/>
 
                 <TextBlock Grid.Row="1" Text="Giá tiền: 4.000.000đ" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
 
