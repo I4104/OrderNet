@@ -70,7 +70,7 @@
 
                         <TextBlock x:Name="ManagementText" FontSize="12" Margin="0, 10, 0, 0" FontWeight="Bold" Foreground="DimGray">QUẢN LÝ</TextBlock>
                         <Button x:Name="AdminOrderButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="TimeTab">
-                            <components:SidebarItems x:Name="AdminOrderTabItem" ItemActive="false" ItemIcon="\Resources\Images\time.png" ItemName="Đơn hàng" />
+                            <components:SidebarItems x:Name="AdminOrderTabItem" ItemActive="false" ItemIcon="\Resources\Images\oder.png" ItemName="Đơn hàng" />
                         </Button>
 
                         <Button x:Name="AdminUserButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="TimeTab">
