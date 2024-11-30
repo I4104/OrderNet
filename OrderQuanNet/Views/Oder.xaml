@@ -8,7 +8,7 @@
              Background="Transparent"
              d:DesignHeight="450" d:DesignWidth="800"
              SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded">
-    <Border CornerRadius="10" Background="White" Padding="10">
+    <Border CornerRadius="10" Background="White" Padding="10" >
         <ScrollViewer x:Name="OderPanel" Visibility="Visible" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,8">
             <Grid>
                 <Grid.RowDefinitions>
@@ -26,11 +26,11 @@
                         <TextBlock Grid.Column="1" Margin="10, 0, 0, 0"  FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0">DANH SÁCH ODER</TextBlock>
                     </Grid>
                 </StackPanel>
-                <UniformGrid Grid.Row="1" x:Name="OderGrid" Columns="3" Margin="10" VerticalAlignment="Top">
-                    <Border CornerRadius="10" Height="300" Width="200" BorderThickness="1" BorderBrush="#DDDDDD" Margin="10" Padding="10">
-                        <StackPanel  Background="Transparent" VerticalAlignment="Top" HorizontalAlignment="Center" Width="150">
+                <UniformGrid Grid.Row="1" x:Name="OderGrid" Columns="5" Margin="10" VerticalAlignment="Top">
+                    <Border CornerRadius="10" Height="300" Width="150" BorderThickness="1" BorderBrush="#DDDDDD" Margin="5" Padding="5">
+                        <StackPanel  Background="Transparent" Width="150" HorizontalAlignment="Center">
                             <!-- Hình ảnh món ăn -->
-                            <Image Source="\Resources\Images\phoboquannet.png" Height="120" Width="120" Margin="0,0,0,0" Stretch="UniformToFill"/>
+                            <Image Source="\Resources\Images\phoboquannet.png" Height="120" Width="130" Margin="0" HorizontalAlignment="Center" Stretch="UniformToFill"/>
 
                             <!-- Thông tin món ăn -->
                             <TextBlock Text="Món Ăn 1" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="#333333" Margin="0,0,0,6"/>
@@ -46,57 +46,94 @@
                             <TextBlock Text="Số lượng: 2" FontSize="12" HorizontalAlignment="Center" Foreground="#555555" Margin="0,0,0,12"/>
 
                             <!-- Nút xác nhận với hover và đổ bóng -->
-                            <Button Content="Xác Nhận"  Width="100" Height="35" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#4CAF50" Foreground="White" BorderBrush="Transparent">
-                                <!-- Template để bo góc và đổ bóng -->
-                                <Button.Template>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="5">
-                                            <Border.Effect>
-                                                <DropShadowEffect Color="Black" Direction="270" BlurRadius="8" ShadowDepth="3" Opacity="0.3"/>
-                                            </Border.Effect>
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <!-- Nút Order (màu xanh lá) -->
+                                <Button x:Name="btnOrder" Content="Order" Width="100" Height="35" FontSize="14" Background="#B32B00" Foreground="White"
+                                        Click="BtnOrder_Click" Visibility="Visible">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="10">
+                                                <Border.Effect>
+                                                    <DropShadowEffect Color="Black" Direction="270" BlurRadius="8" ShadowDepth="3" Opacity="0.3"/>
+                                                </Border.Effect>
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5" Opacity="0.5"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
 
-                                <!-- Hiệu ứng Hover -->
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Background" Value="#4CAF50"/>
-                                        <Setter Property="Cursor" Value="Hand"/>
-                                        <Style.Triggers>
-                                            <EventTrigger RoutedEvent="Button.MouseEnter">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation 
-                                            Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                                            To="#388E3C" Duration="0:0:0.2"/>
-                                                        <DoubleAnimation
-                                            Storyboard.TargetProperty="(Button.Effect).(DropShadowEffect.BlurRadius)"
-                                            To="12" Duration="0:0:0.2"/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger>
-                                            <EventTrigger RoutedEvent="Button.MouseLeave">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation 
-                                            Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                                            To="#4CAF50" Duration="0:0:0.2"/>
-                                                        <DoubleAnimation
-                                            Storyboard.TargetProperty="(Button.Effect).(DropShadowEffect.BlurRadius)"
-                                            To="8" Duration="0:0:0.2"/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
+                                <!-- Nút Xác Nhận (màu cam) -->
+                                <Button x:Name="btnConfirm" Content="Xác Nhận" Width="100" Height="35" FontSize="14" Background="#27bb00" Foreground="White"
+                                        Click="BtnConfirm_Click" Visibility="Collapsed">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="10">
+                                                <Border.Effect>
+                                                    <DropShadowEffect Color="Black" Direction="270" BlurRadius="8" ShadowDepth="3" Opacity="0.3"/>
+                                                </Border.Effect>
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5" Opacity="0.5"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+
+                                <!-- Nút Hoàn Thành (màu xanh dương) -->
+                                <Button x:Name="btnComplete" Content="Hoàn Thành" Width="100" Height="35" FontSize="14" Background="#2196F3" Foreground="White"
+                                         Visibility="Collapsed">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="10">
+                                                <Border.Effect>
+                                                    <DropShadowEffect Color="Black" Direction="270" BlurRadius="8" ShadowDepth="3" Opacity="0.3"/>
+                                                </Border.Effect>
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5" Opacity="0.5"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
                         </StackPanel>
                     </Border>
                 </UniformGrid>
-
             </Grid>
         </ScrollViewer>
     </Border>

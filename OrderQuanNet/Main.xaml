@@ -69,12 +69,12 @@
                         </Button>
 
                         <TextBlock x:Name="ManagementText" FontSize="12" Margin="0, 10, 0, 0" FontWeight="Bold" Foreground="DimGray">QUẢN LÝ</TextBlock>
-                        <Button x:Name="AdminOrderButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="TimeTab">
+                        <Button x:Name="AdminOrderButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="OderTab">
                             <components:SidebarItems x:Name="AdminOrderTabItem" ItemActive="false" ItemIcon="\Resources\Images\oder.png" ItemName="Đơn hàng" />
                         </Button>
 
-                        <Button x:Name="AdminUserButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="TimeTab">
-                            <components:SidebarItems x:Name="AdminUserTabItem" ItemActive="false" ItemIcon="\Resources\Images\time.png" ItemName="Quản lý người dùng" />
+                        <Button x:Name="AdminUserButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="User">
+                            <components:SidebarItems x:Name="AdminUserTabItem" ItemActive="false" ItemIcon="\Resources\Images\usermanagement.png" ItemName="Quản lý người dùng" />
                         </Button>
 
                     </StackPanel>
@@ -92,7 +92,7 @@
                         <RowDefinition Height="30" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    
+
                     <StackPanel Grid.Row="0">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -105,9 +105,9 @@
                                     <TextBlock x:Name="OrderTab" FontSize="12" FontWeight="Bold">Giỏ hàng</TextBlock>
                                 </Border>
                             </Button>
-                            
+
                             <Border Grid.Column="1" Width="1" BorderThickness="1" BorderBrush="Black" Background="Black"></Border>
-                            
+
                             <Button Click="HistoryToggle" Background="Transparent" Grid.Column="2">
                                 <Border CornerRadius="5" Padding="3" Background="white">
                                     <TextBlock x:Name="HistoryTab" FontSize="12" FontWeight="Bold">Lịch sử</TextBlock>
@@ -117,7 +117,6 @@
                     </StackPanel>
                     <ContentControl MinHeight="200" Grid.Row="2" Margin="0, 5, 0, 0" x:Name="RightBarManager" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 </Grid>
-
             </Border>
         </StackPanel>
 

@@ -9,7 +9,7 @@ namespace OrderQuanNet
 {
     public partial class Main : Window
     {
-        private enum TabType { Food, Drink, Time }
+        private enum TabType { Food, Drink, Time, Oder,User }
         private enum RightBarType { Orders, History }
 
         private TabType currentTab = TabType.Food;
@@ -53,6 +53,11 @@ namespace OrderQuanNet
         private void DrinkTab(object sender, EventArgs e) { SwitchTab(TabType.Drink, new Drink()); }
 
         private void TimeTab(object sender, EventArgs e) { SwitchTab(TabType.Time, new Time()); }
+        private void OderTab(object sender, EventArgs e) { SwitchTab(TabType.Oder, new Oder()); }
+        private void User(object sender, EventArgs e) { SwitchTab(TabType.User, new User()); }
+
+
+
 
         private void SwitchTab(TabType tabType, ContentControl content)
         {
@@ -122,6 +127,12 @@ namespace OrderQuanNet
                     break;
                 case TabType.Time:
                     ContentManager.Content = new Time();
+                    break;
+                case TabType.Oder:
+                    ContentManager.Content = new Oder();
+                    break;
+                case TabType.User:
+                    ContentManager.Content = new User();
                     break;
             }
         }

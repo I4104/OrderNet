@@ -11,11 +11,14 @@
     <ItemGroup>
       <None Remove="Resources\Images\1h.png" />
       <None Remove="Resources\Images\add.png" />
+      <None Remove="Resources\Images\download.png" />
       <None Remove="Resources\Images\drink.png" />
       <None Remove="Resources\Images\food.png" />
+      <None Remove="Resources\Images\man.png" />
       <None Remove="Resources\Images\oder.png" />
       <None Remove="Resources\Images\phoboquannet.png" />
       <None Remove="Resources\Images\time.png" />
+      <None Remove="Resources\Images\usermanagement.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -34,10 +37,16 @@
       <Resource Include="Resources\Images\add.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
+      <Resource Include="Resources\Images\download.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
       <Resource Include="Resources\Images\drink.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Resources\Images\food.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Images\man.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Resources\Images\oder.png">
@@ -47,6 +56,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Resources\Images\time.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Images\usermanagement.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>

@@ -16,17 +16,16 @@ using System.Windows.Shapes;
 namespace OrderQuanNet.Views
 {
     /// <summary>
-    /// Interaction logic for UserControl1.xaml
+    /// Interaction logic for UserManagement.xaml
     /// </summary>
-    public partial class Time : UserControl
+    public partial class User : UserControl
     {
-        public Time()
+        public User()
         {
             InitializeComponent();
         }
 
         private bool IsAdmin = true; // hoặc lấy giá trị này từ hệ thống đăng nhập của bạn
-
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             UpdateRows();
@@ -56,8 +55,9 @@ namespace OrderQuanNet.Views
         {
             double itemWidth = 160;
             int rowCount = (int)(this.ActualWidth / itemWidth);
-            TimeGrid.Columns = rowCount;
+            UserGrid.Columns = rowCount;
         }
+
 
         private void DynamicButtonClick(object sender, RoutedEventArgs e)
         {
@@ -67,22 +67,9 @@ namespace OrderQuanNet.Views
                 // Nếu là admin, gọi cửa sổ EditPopup
                 EditPopup(sender, e);
             }
-            else
-            {
-                // Nếu là user, gọi cửa sổ PopupTab
-                PopupTab(sender, e);
-            }
+            
         }
-
-        private void PopupTab(object sender, RoutedEventArgs e)
-        {
-            // Tạo một cửa sổ mới của loại Detail
-            Detail detailWindow = new Detail();
-
-            // Hiển thị cửa sổ mới
-            detailWindow.ShowDialog();
-        }
-
+        
         private void EditPopup(object sender, RoutedEventArgs e)
         {
             // Tạo một cửa sổ mới của loại EditPopupWindow
