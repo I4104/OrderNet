@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace OrderQuanNet.Views
@@ -35,29 +34,45 @@ namespace OrderQuanNet.Views
             {
                 string selectedImagePath = openFileDialog.FileName;
                 txtImagePath.Text = selectedImagePath;
-
-                imgPreview.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.Absolute));
             }
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
+        private void Create_Click(object sender, RoutedEventArgs e)
         {
             string productName = txtProductName.Text;
-            string price = txtPrice.Text;
+            string Price = txtPrice.Text;
             string imagePath = txtImagePath.Text;
 
-            if (string.IsNullOrWhiteSpace(productName) || string.IsNullOrWhiteSpace(price) || string.IsNullOrWhiteSpace(imagePath))
+            // Validation for empty fields
+            if (string.IsNullOrWhiteSpace(productName) || string.IsNullOrWhiteSpace(Price) || string.IsNullOrWhiteSpace(imagePath))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please fill in all the required fields.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Show the information without the date
-            MessageBox.Show($"Tên sản phẩm: {productName}\nGiá: {price}\nĐường dẫn hình: {imagePath}", "Thông tin sản phẩm");
+            // Validate if balance is a valid number
+            if (!decimal.TryParse(Price, out decimal PriceValue))
+            {
+                MessageBox.Show("Balance must be a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Confirmation message
+            MessageBox.Show($"Product Name: {productName}\nBalance: {PriceValue:C}\nImage Path: {imagePath}", "Product Information");
+
+            // Close the window after saving
+            this.Close();
         }
 
-        private void Close_Click(object sender, RoutedEventArgs e)
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
+            // Simply close the window without saving
+            this.Close();
+        }
+
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            // Close the window
             this.Close();
         }
     }

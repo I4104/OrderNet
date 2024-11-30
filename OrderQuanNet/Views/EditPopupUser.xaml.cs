@@ -36,19 +36,29 @@ namespace OrderQuanNet.Views
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedImagePath = openFileDialog.FileName;
-                txtImagePath.Text = selectedImagePath;
-                imgPreview.Source = new BitmapImage(new Uri(selectedImagePath, UriKind.Absolute));
+                txtImagePath.Text = selectedImagePath;  // Hiển thị đường dẫn ảnh
             }
         }
 
-        private void Edit_Click(object sender, RoutedEventArgs e)
+        // Chức năng hủy bỏ
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            string userName = txtProductName.Text;
-            string password = txtPassword.Text;
-            string balance = txtPrice.Text;
+            this.Close(); // Đóng cửa sổ nếu người dùng nhấn Cancel
+        }
+
+        // Chức năng tạo người dùng
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            // Lấy dữ liệu từ các trường nhập liệu
+            string userName = txtUserName.Text;
+            string email = txtEmail.Text;
+            string password = txtPassword.Password; // Dùng PasswordBox nên phải lấy bằng .Password
+            string balance = txtBalance.Text;
             string imagePath = txtImagePath.Text;
 
+            // Kiểm tra xem người dùng đã nhập đầy đủ thông tin chưa
             if (string.IsNullOrWhiteSpace(userName) ||
+                string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(balance) ||
                 string.IsNullOrWhiteSpace(imagePath))
@@ -57,21 +67,17 @@ namespace OrderQuanNet.Views
                 return;
             }
 
-            MessageBox.Show($"Tên người dùng: {userName}\nMật khẩu: {password}\nSố dư: {balance}\nĐường dẫn hình ảnh: {imagePath}", "Thông tin người dùng");
-        }
+            // Hiển thị thông tin người dùng
+            MessageBox.Show($"Tên người dùng: {userName}\nEmail: {email}\nMật khẩu: {password}\nSố dư: {balance}\nĐường dẫn hình ảnh: {imagePath}", "Thông tin người dùng");
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa người dùng này?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                MessageBox.Show("Người dùng đã được xóa.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-
-        private void Close_Click(object sender, RoutedEventArgs e)
-        {
+            // Đóng cửa sổ sau khi tạo
             this.Close();
+        }
+
+        // Chức năng đóng cửa sổ
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); // Đóng cửa sổ khi nhấn nút "X"
         }
     }
 }

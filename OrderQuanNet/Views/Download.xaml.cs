@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Globalization;
-using System.Windows.Xps.Packaging;
-using System.Windows.Documents;
-using System.Xml;
-using System.Text;
 
 namespace OrderQuanNet.Views
 {
@@ -18,8 +10,6 @@ namespace OrderQuanNet.Views
         {
             InitializeComponent();
         }
-
-        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -33,40 +23,65 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(UIElement.OpacityProperty, fadeIn);
         }
 
-        // Sự kiện xuất dữ liệu
-        private void Export_Click(object sender, RoutedEventArgs e)
+        // Xuất dữ liệu
+        private void ExportData()
         {
-            
+            // Use pattern matching to safely check for null and cast
+            if (ExportFormatComboBox.SelectedItem is ComboBoxItem selectedItem && selectedItem.Content is string selectedFormat)
+            {
+                switch (selectedFormat)
+                {
+                    case "CSV":
+                        ExportToCSV();
+                        break;
+                    case "Excel":
+                        ExportToExcel();
+                        break;
+                    case "PDF":
+                        ExportToPDF();
+                        break;
+                    default:
+                        MessageBox.Show("Vui lòng chọn định dạng xuất!");
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn định dạng xuất!");
+            }
         }
 
-        // Xuất dữ liệu ra CSV
         private static void ExportToCSV()
         {
-           
+            MessageBox.Show("Đã xuất dữ liệu ra CSV!");
         }
 
-        // Xuất dữ liệu ra Excel
         private static void ExportToExcel()
         {
-           
-
             MessageBox.Show("Đã xuất dữ liệu ra Excel!");
         }
 
-        // Xuất dữ liệu ra PDF (chưa triển khai hoàn chỉnh, chỉ là ví dụ)
         private static void ExportToPDF()
         {
-            
             MessageBox.Show("Đã xuất dữ liệu ra PDF!");
         }
 
         // Sự kiện đóng cửa sổ
-        private void Close_Click(object sender, RoutedEventArgs e)
+        private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); // Đóng cửa sổ hiện tại
+            this.Close();
+        }
+
+        // Sự kiện hủy bỏ
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        // Sự kiện tạo (xuất dữ liệu)
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            ExportData();
         }
     }
-
-    // Lớp dữ liệu mẫu cho sản phẩm
-    
 }
