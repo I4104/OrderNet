@@ -41,7 +41,9 @@ namespace OrderQuanNet.Views
             }
         }
 
-        private void Edit_Click(object sender, RoutedEventArgs e)
+
+
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             string userName = txtProductName.Text;
             string password = txtPassword.Text;
@@ -58,15 +60,6 @@ namespace OrderQuanNet.Views
             }
 
             MessageBox.Show($"Tên người dùng: {userName}\nMật khẩu: {password}\nSố dư: {balance}\nĐường dẫn hình ảnh: {imagePath}", "Thông tin người dùng");
-        }
-
-        private void Delete_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa người dùng này?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
-            {
-                MessageBox.Show("Người dùng đã được xóa.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

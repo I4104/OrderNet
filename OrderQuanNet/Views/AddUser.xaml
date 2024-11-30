@@ -110,8 +110,7 @@
 
                     <!-- Nút Lưu và Đóng -->
                     <StackPanel  Orientation="Horizontal" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,30,0,0">
-                        <Button Content="Xửa" Width="120" Height="40" Click="Edit_Click" />
-                        <Button Content="Xóa" Width="120" Height="40" Click="Delete_Click" />
+                        <Button Content="Lưu" Width="120" Height="40" Click="Save_Click" />
                         <Button Content="Đóng" Width="120" Height="40" Click="Close_Click" />
                     </StackPanel>
                 </Grid>
