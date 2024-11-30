@@ -65,23 +65,23 @@ namespace OrderQuanNet.Views
             if (IsAdmin)
             {
                 // Nếu là admin, gọi cửa sổ EditPopup
-                EditPopup(sender, e);
+                EditPopupUser(sender, e);
             }
             
         }
         
-        private void EditPopup(object sender, RoutedEventArgs e)
+        private void EditPopupUser(object sender, RoutedEventArgs e)
         {
             // Tạo một cửa sổ mới của loại EditPopupWindow
-            EditPopup editWindow = new EditPopup();
+            EditPopupUser editWindow = new EditPopupUser();
 
             // Hiển thị cửa sổ mới
             editWindow.ShowDialog();
         }
-        private void Add(object sender, RoutedEventArgs e)
+        private void AddUser(object sender, RoutedEventArgs e)
         {
             // Tạo một cửa sổ mới của loại Detail
-            Add addWindow = new Add();
+            AddUser addWindow = new AddUser();
 
             // Hiển thị cửa sổ mới
             addWindow.ShowDialog();
