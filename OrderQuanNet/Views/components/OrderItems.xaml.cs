@@ -1,12 +1,14 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using OrderQuanNet.DataManager;
 
 namespace OrderQuanNet.Views.components
 {
     public partial class OrderItems : UserControl
     {
+        private Action _updateCart;
+
         public static readonly DependencyProperty ImageSourceProperty = DependencyProperty.Register(
             "ImageSource", typeof(string), typeof(OrderItems), new PropertyMetadata(string.Empty, OnItemIconChanged));
 
@@ -55,6 +57,7 @@ namespace OrderQuanNet.Views.components
         public OrderItems()
         {
             InitializeComponent();
+            _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
         }
 
         private static void OnItemIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -66,6 +69,14 @@ namespace OrderQuanNet.Views.components
             {
                 control.ItemImage.Source = new BitmapImage(new Uri(newIcon, UriKind.RelativeOrAbsolute));
             }
+        }
+
+        private void DeleteItem(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(ItemId);
+            CartDataManager.removeItem(id);
+            MessageBox.Show("Đã xóa sản phẩm khỏi giỏ hàng");
+            _updateCart?.Invoke();
         }
     }
 }

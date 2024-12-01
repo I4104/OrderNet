@@ -31,17 +31,27 @@
                         
                     </Grid>
                 </StackPanel>
-                <UniformGrid Grid.Row="1" x:Name="TimeGrid" Columns="5" Margin="2" VerticalAlignment="Top">
-                    <Border CornerRadius="5" Height="180" BorderThickness="1" BorderBrush="gray"  Margin="10" Padding="5">
-                        <Button Background="Transparent" VerticalAlignment="Top" Click="DynamicButtonClick">
-                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Image Source="\Resources\Images\1h.png" Height="120" Margin="0, 0, 0, 10" Stretch="Uniform"/>
-                                <TextBlock Text="1H" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Margin="2"/>
-                                <TextBlock Text="10.000 VND" HorizontalAlignment="Center" Margin="2" Foreground="#FF757575" FontSize="10"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
-                </UniformGrid>
+                <ItemsControl Grid.Row="1" x:Name="TimeItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid x:Name="TimeGrid" Columns="5" Margin="2" VerticalAlignment="Top" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="5" Height="180" BorderThickness="1" BorderBrush="gray" Margin="10" Padding="5">
+                                <Button Background="Transparent" VerticalAlignment="Top" Click="DynamicButtonClick" Tag="{Binding id}">
+                                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Image Source="{Binding image_path}" Height="120" Margin="0, 0, 0, 10" Stretch="UniformToFill"/>
+                                        <TextBlock Text="{Binding name}" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" Margin="2"/>
+                                        <TextBlock Text="{Binding price, StringFormat={}{0} VND}" HorizontalAlignment="Center" Margin="2" Foreground="#FF757575" FontSize="10"/>
+                                    </StackPanel>
+                                </Button>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
         </ScrollViewer>
     </Border>

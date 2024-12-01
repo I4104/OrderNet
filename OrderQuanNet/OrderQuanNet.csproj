@@ -15,22 +15,19 @@
       <None Remove="Resources\Images\drink.png" />
       <None Remove="Resources\Images\food.png" />
       <None Remove="Resources\Images\man.png" />
-      <None Remove="Resources\Images\oder.png" />
       <None Remove="Resources\Images\phoboquannet.png" />
       <None Remove="Resources\Images\time.png" />
       <None Remove="Resources\Images\usermanagement.png" />
     </ItemGroup>
 
     <ItemGroup>
-      <Resource Include="Resources\Images\1h.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
+      <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models\" />
-      <Folder Include="Services\" />
-      <Folder Include="ViewModels\" />
+      <Resource Include="Resources\Images\1h.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
@@ -49,7 +46,7 @@
       <Resource Include="Resources\Images\man.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
-      <Resource Include="Resources\Images\oder.png">
+      <Resource Include="Resources\Images\orders.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Resources\Images\phoboquannet.png">

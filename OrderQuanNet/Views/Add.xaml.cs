@@ -1,7 +1,5 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Windows;
-using System.Windows.Media.Imaging;
+﻿using System.Windows;
+using Microsoft.Win32;
 
 namespace OrderQuanNet.Views
 {

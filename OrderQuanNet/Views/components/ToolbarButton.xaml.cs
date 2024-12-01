@@ -1,7 +1,6 @@
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows;
-using Color = System.Windows.Media.Color;
 
 namespace OrderQuanNet.Views.components
 {
@@ -17,7 +16,7 @@ namespace OrderQuanNet.Views.components
         {
             InitializeComponent();
         }
-        
+
         public Brush ButtonBackground
         {
             get { return (Brush)GetValue(ButtonBackgroundProperty); }
@@ -29,7 +28,7 @@ namespace OrderQuanNet.Views.components
             get { return (string)GetValue(ButtonTextProperty); }
             set { SetValue(ButtonTextProperty, value); }
         }
-        
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             OnClick();

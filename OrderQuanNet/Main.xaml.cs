@@ -1,69 +1,83 @@
-﻿using System;
+﻿using System.Security.Cryptography;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
+using OrderQuanNet.Services;
 using OrderQuanNet.Views;
-using OrderQuanNet.Views.components;
 
 namespace OrderQuanNet
 {
     public partial class Main : Window
     {
-        private enum TabType { Food, Drink, Time, Oder,User }
+        public Action UpdateCartAction { get; set; }
+
+        public static string HashMD5(string input)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hashBytes) { sb.Append(b.ToString("X2")); }
+                return sb.ToString().ToLower();
+            }
+        }
+
+        private enum TabType { Food, Drink, Time, OrdersManager, UserManager }
         private enum RightBarType { Orders, History }
 
         private TabType currentTab = TabType.Food;
         private RightBarType currentRightBar = RightBarType.Orders;
 
-        
         public Main()
         {
+            if (SessionManager.users == null)
+            {
+                this.Hide();
+
+                Login login = new Login();
+                login.ShowDialog();
+                if (SessionManager.users == null || String.IsNullOrEmpty(SessionManager.users.type))
+                {
+                    Application.Current.Shutdown();
+                    return;
+                }
+                this.Show();
+            }
+
             InitializeComponent();
             SetInitialContent();
+            UpdateCartAction = () => { ReloadLayouts(null, null); };
         }
         private void SetInitialContent()
         {
+            
+            if (SessionManager.users.type != "admin") ADMIN_SHOWING_MANAGEMENT.Visibility = Visibility.Hidden;
+            UserCard.UserName = SessionManager.users.name;
+            UserCard.UserType = SessionManager.users.type;
 
-            ContentManager.Content = new Food();
-            RightBarManager.Content = new OrdersTab();
+            ReloadLayouts(null, null);
             SwitchOrderOrHistory(OrderTab);
         }
-        
-        /**
-          Xử lý logic
-         */
 
-
-
-
-
-
-
-
-
-        /**
-            Xử lý sự kiện của APP
-         */
         private void OrderToggle(object sender, EventArgs e) { SwitchRightBar(RightBarType.Orders); }
-
         private void HistoryToggle(object sender, EventArgs e) { SwitchRightBar(RightBarType.History); }
-
         private void FoodTab(object sender, EventArgs e) { SwitchTab(TabType.Food, new Food()); }
-
         private void DrinkTab(object sender, EventArgs e) { SwitchTab(TabType.Drink, new Drink()); }
-
         private void TimeTab(object sender, EventArgs e) { SwitchTab(TabType.Time, new Time()); }
-        private void OderTab(object sender, EventArgs e) { SwitchTab(TabType.Oder, new Oder()); }
-        private void User(object sender, EventArgs e) { SwitchTab(TabType.User, new User()); }
-
-
-
+        private void OrdersManagerTab(object sender, EventArgs e) { SwitchTab(TabType.OrdersManager, new OrdersManager()); }
+        private void UserManagerTab(object sender, EventArgs e) { SwitchTab(TabType.UserManager, new UserManager()); }
 
         private void SwitchTab(TabType tabType, ContentControl content)
         {
             currentTab = tabType;
             ActiveTab(tabType);
-            ContentManager.Content = content;
+            ReloadLayouts(null, null);
         }
 
         private void SwitchRightBar(RightBarType rightBarType)
@@ -86,6 +100,8 @@ namespace OrderQuanNet
             FoodTabItem.ItemActive = tabType == TabType.Food ? "true" : "false";
             DrinkTabItem.ItemActive = tabType == TabType.Drink ? "true" : "false";
             TimeTabItem.ItemActive = tabType == TabType.Time ? "true" : "false";
+            AdminOrderTabItem.ItemActive = tabType == TabType.OrdersManager ? "true" : "false";
+            AdminUserTabItem.ItemActive = tabType == TabType.UserManager ? "true" : "false";
         }
 
         private void SwitchOrderOrHistory(TextBlock tab)
@@ -101,7 +117,6 @@ namespace OrderQuanNet
 
             TabControl.Height = this.ActualHeight - 55;
             RightBarManager.Height = this.ActualHeight - 100;
-            RightBarManager.Width = OrderAndHistory.ActualWidth - 20;
 
             Menu.Height = Sidebar.Height - 175;
             ContentManager.Height = this.ActualHeight - 55;
@@ -128,11 +143,11 @@ namespace OrderQuanNet
                 case TabType.Time:
                     ContentManager.Content = new Time();
                     break;
-                case TabType.Oder:
-                    ContentManager.Content = new Oder();
+                case TabType.OrdersManager:
+                    ContentManager.Content = new OrdersManager();
                     break;
-                case TabType.User:
-                    ContentManager.Content = new User();
+                case TabType.UserManager:
+                    ContentManager.Content = new UserManager();
                     break;
             }
         }

@@ -1,0 +1,67 @@
+﻿-- Tạo cơ sở dữ liệu với mã hóa UTF-8
+CREATE DATABASE OrderQuanNet
+COLLATE Latin1_General_100_CI_AI_SC_UTF8;
+GO
+
+USE OrderQuanNet;
+GO
+
+-- Tạo bảng Products với các trường dữ liệu
+CREATE TABLE Products (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(255) NOT NULL,
+    type NVARCHAR(255) NOT NULL,
+    price INT NOT NULL,
+    image_path NVARCHAR(255) NULL
+);
+GO
+
+-- Tạo bảng Users với các trường dữ liệu
+CREATE TABLE Users (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(255) NOT NULL,
+    username NVARCHAR(255) NOT NULL UNIQUE,
+    password NVARCHAR(255) NOT NULL,
+    type NVARCHAR(50) NOT NULL,
+    balance INT NOT NULL DEFAULT 0
+);
+GO
+
+-- Tạo bảng Orders với các trường dữ liệu và tự động cập nhật trường `created_at` và `updated_at`
+CREATE TABLE Orders (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    users_id INT NOT NULL,
+    product_id INT NOT NULL,
+    amount INT NOT NULL,
+    price INT NOT NULL,
+    status NVARCHAR(50) NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT GETDATE(),
+    updated_at DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (users_id) REFERENCES Users(id),
+    FOREIGN KEY (product_id) REFERENCES Products(id)
+);
+GO
+
+-- Tạo trigger để tự động cập nhật `updated_at` khi bản ghi bị sửa đổi
+CREATE TRIGGER trg_UpdateTimestamp
+ON Orders
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE Orders
+    SET updated_at = GETDATE()
+    WHERE id IN (SELECT id FROM inserted);
+END;
+GO
+
+-- Thêm sản phẩm vào bảng Products
+INSERT INTO Products (name, type, price, image_path) 
+VALUES 
+('Phở bò LandMark', 'food', 4000000, '\Resources\Images\phoboquannet.png'), -- Sản phẩm loại food
+('Bánh mì kẹp', 'food', 30000, 'https://upload.wikimedia.org/wikipedia/commons/0/0c/B%C3%A1nh_m%C3%AC_th%E1%BB%8Bt_n%C6%B0%E1%BB%9Bng.png'),             -- Sản phẩm loại food
+('Cà phê Sữa', 'drink', 25000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRakhKz7THF7Lzz-Xnh5vqVzLYdUrgnSjJkmg&s'),            -- Sản phẩm loại drink
+('Trà sữa Đài Loan', 'drink', 35000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqxuaNsLRhNHnxr3wwxjH1HJVNIL4LlHdbNw&s'),       -- Sản phẩm loại drink
+('Giờ ăn sáng', 'time', 0, 'https://cdnsecakmi.kaltura.com/p/684682/sp/68468200/thumbnail/entry_id/0_ezc4co72/width/1280'),               -- Sản phẩm loại time (có thể là giờ ăn, không có giá trị tiền tệ)
+('Giờ nghỉ trưa', 'time', 0, 'https://cdnsecakmi.kaltura.com/p/684682/sp/68468200/thumbnail/entry_id/0_ezc4co72/width/1280');             -- Sản phẩm loại time (giống như trên)
+

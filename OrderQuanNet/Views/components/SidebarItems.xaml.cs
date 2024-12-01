@@ -12,7 +12,7 @@ namespace OrderQuanNet.Views.components
 
         public static readonly DependencyProperty ItemNameProperty = DependencyProperty.Register(
             "ItemName", typeof(string), typeof(SidebarItems), new PropertyMetadata(string.Empty));
-        
+
         public static readonly DependencyProperty ItemActiveProperty = DependencyProperty.Register(
             "ItemActive", typeof(string), typeof(SidebarItems), new PropertyMetadata("false", OnItemActiveChanged));
 
@@ -27,7 +27,7 @@ namespace OrderQuanNet.Views.components
             get { return (string)GetValue(ItemNameProperty); }
             set { SetValue(ItemNameProperty, value); }
         }
-        
+
         public string ItemActive
         {
             get { return (string)GetValue(ItemActiveProperty); }
@@ -58,7 +58,7 @@ namespace OrderQuanNet.Views.components
             if (!string.IsNullOrEmpty(isActive) && isActive == "true")
             {
                 control.title.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2c86f5"));
-            } 
+            }
             else
             {
                 control.title.Foreground = new SolidColorBrush(Colors.Black);

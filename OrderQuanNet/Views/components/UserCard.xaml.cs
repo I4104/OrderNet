@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace OrderQuanNet.Views.components
@@ -21,9 +20,9 @@ namespace OrderQuanNet.Views.components
         public string UserType
         {
             get { return (string)GetValue(UserTypeProperty); }
-            set { SetValue(UserTypeProperty, "Account Type: " + value); }
+            set { SetValue(UserTypeProperty, value); }
         }
-        
+
         public UserCard()
         {
             InitializeComponent();

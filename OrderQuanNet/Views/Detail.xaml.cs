@@ -1,19 +1,49 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
 
 namespace OrderQuanNet.Views
 {
     public partial class Detail : Window
     {
-        public Detail()
+        private Action _updateCart;
+
+        private ProductsModel product;
+        public Detail(int id)
         {
             InitializeComponent();
+            product = loadProduct(id);
+            if (product == null)
+            {
+                MessageBox.Show("Sản phẩm này không còn tồn tại!");
+                this.Close();
+                return;
+            }
+
+            Title.Text = product.name;
+            Price.Text = product.price.ToString();
+            ImagePath.Source = new BitmapImage(new Uri(product.image_path, UriKind.RelativeOrAbsolute));
+
+            _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
+        }
+
+        private ProductsModel loadProduct(int id)
+        {
+            var allProducts = ProductDataManager.Products;
+            if (allProducts.Where(p => p.id == id).FirstOrDefault() != null)
+                ProductDataManager.LoadProducts();
+            return allProducts.Where(p => p.id == id).FirstOrDefault();
         }
 
 
         private void AddToCart(object sender, RoutedEventArgs e)
         {
+            CartDataManager.addItem((int)product.id);
             MessageBox.Show("Đã thêm vào giỏ hàng!");
+            _updateCart?.Invoke();
+            this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

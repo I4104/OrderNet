@@ -13,7 +13,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Image x:Name="ItemImage" Width="75" Height="75" Grid.Column="0" Stretch="UniformToFill" Source="{Binding ItemImage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+        <Image x:Name="ItemImage" Width="75" Height="75" Grid.Column="0" Stretch="Fill" Source="{Binding Path=ItemImage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
 
         <StackPanel Grid.Column="1" Margin="10, 0, 0, 0">
             <Grid>
@@ -23,9 +23,9 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Phở bò LandMark" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="Red" FontSize="16"/>
+                <TextBlock Grid.Row="0" Text="{Binding Path=ItemName, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="Red" FontSize="16"/>
 
-                <TextBlock Grid.Row="1" Text="Giá tiền: 4.000.000đ" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
+                <TextBlock Grid.Row="1" Text="{Binding Path=ItemPrice, StringFormat='Giá tiền: {0:C}', RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
 
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
@@ -33,10 +33,10 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0, 5">
-                        <TextBlock Text="Số lượng: 1" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
+                        <TextBlock Text="{Binding Path=Amount, StringFormat='Số lượng: {0:C}', RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
                     </StackPanel>
 
-                    <Button Grid.Column="1" Content="Xóa" Width="50" Height="20" HorizontalAlignment="Right" Margin="0, 0, 5, 0" VerticalAlignment="Center" BorderThickness="0" Background="Red" Foreground="White" FontWeight="Bold"/>
+                    <Button Grid.Column="1" Content="Xóa" Width="50" Height="20" HorizontalAlignment="Right" Margin="0, 0, 5, 0"  VerticalAlignment="Center" BorderThickness="0" Background="Red" Foreground="White" FontWeight="Bold" Click="DeleteItem" />
                 </Grid>
             </Grid>
         </StackPanel>

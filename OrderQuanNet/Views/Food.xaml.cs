@@ -1,107 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using OrderQuanNet.DataManager;
 
 namespace OrderQuanNet.Views
 {
-    /// <summary>
-    /// Interaction logic for Food.xaml
-    /// </summary>
     public partial class Food : UserControl
     {
         public Food()
         {
             InitializeComponent();
+            LoadFoodProducts();
         }
 
-        // Giả sử bạn có một biến để xác định người dùng hiện tại
-        private bool IsAdmin = true; // hoặc lấy giá trị này từ hệ thống đăng nhập của bạn
+        private void LoadFoodProducts()
+        {
+            if (ProductDataManager.Products.Count == 0) ProductDataManager.LoadProducts();
+            var allProducts = ProductDataManager.Products;
+            var foodProducts = allProducts.Where(p => p.type == "food");
+            FoodItemsControl.ItemsSource = foodProducts.ToList();
+
+            FoodTitle.Text = "CỬA HÀNG ĐỒ ĂN: " + foodProducts.Count();
+        }
+
+        private void DynamicButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (SessionManager.users.type == "admin")  
+                EditPopup(sender, e);
+            else 
+                PopupTab(sender, e);
+        }
+
+        private void PopupTab(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+
+            Detail detailWindow = new Detail(int.Parse(button.Tag.ToString()));
+            detailWindow.ShowDialog();
+
+        }
+
+        private void EditPopup(object sender, RoutedEventArgs e)
+        {
+            EditPopup editWindow = new EditPopup();
+            editWindow.ShowDialog();
+        }
+
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            Add addWindow = new Add();
+            addWindow.ShowDialog();
+        }
+
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             UpdateRows();
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateRows();
 
-            // Kiểm tra quyền của người dùng và ẩn/hiện nút "Add"
-            if (IsAdmin)
-            {
-                // Hiển thị nút "Add" nếu là admin
+            if (SessionManager.users.type == "admin")
                 AddButton.Visibility = Visibility.Visible;
-
-            }
             else
-            {
-                // Ẩn nút "Add" nếu là user
-                AddButton.Visibility = Visibility.Collapsed;
-
-
-            }
+                AddButton.Visibility = Visibility.Hidden;
         }
 
         private void UpdateRows()
         {
             double itemWidth = 160;
             int rowCount = (int)(this.ActualWidth / itemWidth);
-            FoodGrid.Columns = rowCount;
-        }
-        
 
-        private void DynamicButtonClick(object sender, RoutedEventArgs e)
-        {
-            // Kiểm tra xem người dùng có phải là admin không
-            if (IsAdmin)
+            UniformGrid uniformGrid = FindUniformGrid(FoodItemsControl);
+            if (uniformGrid != null)
             {
-                // Nếu là admin, gọi cửa sổ EditPopup
-                EditPopup(sender, e);
-            }
-            else
-            {
-                // Nếu là user, gọi cửa sổ PopupTab
-                PopupTab(sender, e);
+                uniformGrid.Columns = rowCount;
+                uniformGrid.InvalidateMeasure();
             }
         }
 
-        private void PopupTab(object sender, RoutedEventArgs e)
+        // Code này để tìm UniformGrid bên trong ItemSource.
+        // Vì load thông qua ItemSource nên ko thể sử dụng được trực tiếp
+        private UniformGrid FindUniformGrid(DependencyObject parent)
         {
-            // Tạo một cửa sổ mới của loại Detail
-            Detail detailWindow = new Detail();
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is UniformGrid uniformGrid) return uniformGrid;
 
-            // Hiển thị cửa sổ mới
-            detailWindow.ShowDialog();
+                var foundChild = FindUniformGrid(child);
+                if (foundChild != null) return foundChild;
+            }
+            return null;
         }
-
-        private void EditPopup(object sender, RoutedEventArgs e)
-        {
-            // Tạo một cửa sổ mới của loại EditPopupWindow
-            EditPopup editWindow = new EditPopup();
-
-            // Hiển thị cửa sổ mới
-            editWindow.ShowDialog();
-        }
-
-
-        private void Add(object sender, RoutedEventArgs e)
-        {
-            // Tạo một cửa sổ mới của loại Detail
-            Add addWindow = new Add();
-
-            // Hiển thị cửa sổ mới
-            addWindow.ShowDialog();
-        }
-        
-
     }
 }

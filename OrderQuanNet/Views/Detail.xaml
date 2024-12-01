@@ -7,7 +7,7 @@
         xmlns:components="clr-namespace:OrderQuanNet.Views.components"
         mc:Ignorable="d"
         Background="Transparent"
-        Title="Detail" Height="550" Width="400"
+        Title="Detail" Height="280" Width="600"
         ResizeMode="NoResize"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -20,7 +20,7 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Height" Value="40"/>
-            <Setter Property="Width" Value="150"/>
+            <Setter Property="Width" Value="140"/>
             <Setter Property="Margin" Value="0, 0, 10, 0"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="BorderBrush" Value="Gray"/>
@@ -61,32 +61,38 @@
         </Style>
     </Window.Resources>
 
-    <Border Background="White" CornerRadius="10" Height="550" BorderThickness="1" BorderBrush="gray" VerticalAlignment="Top" Margin="0" Padding="0">
+    <Border Background="White" CornerRadius="10" Height="280" BorderThickness="1" BorderBrush="gray" VerticalAlignment="Top" Margin="0" Padding="0">
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Border BorderBrush="Black" Margin="0, 0, 0, 15" BorderThickness="0" CornerRadius="10" Height="350">
-                <Border.Background>
-                    <ImageBrush ImageSource="\Resources\Images\phoboquannet.png" Stretch="UniformToFill" />
-                </Border.Background>
-            </Border>
-
-            <TextBlock Text="Món Ăn 1" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 5" />
-            <TextBlock Text="30.000 VND" HorizontalAlignment="Center" Margin="0, 0, 0, 10" Foreground="#FF757575" FontSize="12"/>
-
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="290"/>
+                    <ColumnDefinition Width="290"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBox Name="QuantityTextBox" Width="160" Height="35" Text="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"  Margin="30, 10, 10, 10"  VerticalContentAlignment="Center"/>
-                </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 10">
-                    <Button Content="Thêm vào giỏ" Click="AddToCart" Style="{StaticResource RoundedButtonStyle}" Background="#FF2196F3"/>
+                <Image x:Name="ImagePath" Stretch="UniformToFill" Height="260" Width="260" Margin="0, 10, 0, 0" Grid.Column="0" />
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock x:Name="Title" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 5" />
+                    <TextBlock x:Name="Price" HorizontalAlignment="Center" Margin="0, 0, 0, 10" Foreground="#FF757575" FontSize="12"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Số lượng:" Margin="10, 0, 20, 0" FontSize="12" FontWeight="Bold" VerticalAlignment="Center"/>
+                        <TextBox Name="QuantityTextBox" Width="200" Height="35" Text="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 10">
+                            <Button Content="Thêm vào giỏ" Command="{Binding UpdateCartCommand}" Click="AddToCart" Style="{StaticResource RoundedButtonStyle}" Background="#FF2196F3"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 10">
+                            <Button Content="Đóng" Background="Red" Margin="5, 0, 5, 0" Click="Close" Style="{StaticResource RoundedButtonStyle}"/>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </Grid>
-
-            <Button Content="Đóng" Background="Red" Width="345" Margin="5, 0, 5, 0" Click="Close" Style="{StaticResource RoundedButtonStyle}"/>
         </StackPanel>
     </Border>
 </Window>

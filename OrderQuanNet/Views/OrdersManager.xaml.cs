@@ -1,15 +1,11 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace OrderQuanNet.Views
 {
-    /// <summary>
-    /// Interaction logic for Oder.xaml
-    /// </summary>
-    public partial class Orders : UserControl
+    public partial class OrdersManager : UserControl
     {
-        public Orders()
+        public OrdersManager()
         {
             InitializeComponent();
         }
