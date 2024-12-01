@@ -40,14 +40,12 @@ namespace OrderQuanNet.Views
             {
                 // Hiển thị nút "Add" nếu là admin
                 AddButton.Visibility = Visibility.Visible;
-                DownloadButton.Visibility = Visibility.Visible;
 
             }
             else
             {
                 // Ẩn nút "Add" nếu là user
                 AddButton.Visibility = Visibility.Collapsed;
-                DownloadButton.Visibility = Visibility.Collapsed;
 
 
             }
@@ -103,13 +101,7 @@ namespace OrderQuanNet.Views
             // Hiển thị cửa sổ mới
             addWindow.ShowDialog();
         }
-        private void Download(object sender, RoutedEventArgs e)
-        {
-            Download downloadWindow = new Download();
-
-            // Hiển thị cửa sổ mới
-            downloadWindow.ShowDialog();
-        }
+        
 
     }
 }
