@@ -4,9 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OrderQuanNet.Views"
+             xmlns:component="clr-namespace:OrderQuanNet.Views.components"
              mc:Ignorable="d" 
-             MinHeight="650" Width="265">
-    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
-        
+             MinHeight="650" Width="265" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged">
+
+    <ScrollViewer VerticalScrollBarVisibility="Hidden" CanContentScroll="True">
+        <ItemsControl Grid.Row="0" x:Name="HistoryItemsControl">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid x:Name="HistoryPanel" Rows="8" Columns="1" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <component:HistoryItems Height="105" ImageSource="{Binding image_path}" ItemId="{Binding id}" ItemName="{Binding name}" ItemPrice="{Binding price}" Amount="{Binding amount}" Status="{Binding status}"  Margin="0, 10, 0, 0" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </ScrollViewer>
 </UserControl>

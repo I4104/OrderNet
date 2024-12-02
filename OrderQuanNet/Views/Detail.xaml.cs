@@ -40,7 +40,8 @@ namespace OrderQuanNet.Views
 
         private void AddToCart(object sender, RoutedEventArgs e)
         {
-            CartDataManager.addItem((int)product.id);
+            int amouunt = int.Parse(QuantityTextBox.Text);
+            CartDataManager.addItem((int)product.id, amouunt);
             MessageBox.Show("Đã thêm vào giỏ hàng!");
             _updateCart?.Invoke();
             this.Close();

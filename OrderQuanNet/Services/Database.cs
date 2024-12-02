@@ -88,12 +88,20 @@ namespace OrderQuanNet.Services
             return command.ExecuteReader();
         }
 
-        public SqlDataReader SelectAll()
+        public SqlDataReader SelectAll(T? where = null)
         {
             var query = $"SELECT * FROM {_tableName}";
 
+            if (where != null)
+            {
+                var parameters = string.Join(" AND ", CreateParametersNotNull(where, true, true));
+                query += $" WHERE {parameters}";
+            }
+
             var connection = new SqlConnection(_connectionString);
             var command = new SqlCommand(query, connection);
+            if (where != null) AddParameters(command, where);
+
             connection.Open();
 
             return command.ExecuteReader();

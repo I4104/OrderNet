@@ -12,16 +12,12 @@ namespace OrderQuanNet.DataManager
     {
         public static Dictionary<int, int> cartItems = new Dictionary<int, int>();
 
-        public static void addItem(int item)
+        public static void addItem(int item, int amount = 1)
         {
             if (cartItems.ContainsKey(item))
-            {
-                cartItems[item]++;
-            }
+                cartItems[item] += amount;
             else
-            {
-                cartItems.Add(item, 1);
-            }
+                cartItems.Add(item, amount);
         }
         public static void removeItem(int item)
         {

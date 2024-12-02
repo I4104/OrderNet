@@ -29,14 +29,6 @@ namespace OrderQuanNet.Views
             _updateCart = ((Main) Application.Current.MainWindow).UpdateCartAction;
         }
 
-        public static readonly DependencyProperty CartItemsProperty = DependencyProperty.Register("CartItems", typeof(Dictionary<int, int>), typeof(OrdersTab), new PropertyMetadata(new Dictionary<int, int>()));
-
-        public Dictionary<int, int> CartItems
-        {
-            get { return (Dictionary<int, int>)GetValue(CartItemsProperty); }
-            set { SetValue(CartItemsProperty, value); }
-        }
-
         private void loadData()
         {
             var data = CartDataManager.cartItems;

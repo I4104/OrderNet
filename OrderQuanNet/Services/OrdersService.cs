@@ -66,10 +66,10 @@ namespace OrderQuanNet.Services
             return null;
         }
 
-        public List<OrdersModel> GetAllOrders()
+        public List<OrdersModel> GetAllOrders(OrdersModel where = null)
         {
             var orders = new List<OrdersModel>();
-            using var reader = _database.SelectAll();
+            using var reader = _database.SelectAll(where);
             while (reader.Read())
             {
                 orders.Add(new OrdersModel
