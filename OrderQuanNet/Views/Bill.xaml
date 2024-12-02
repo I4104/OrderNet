@@ -24,7 +24,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                 <TextBlock Text="Mã Hóa Đơn: " FontWeight="Bold" Width="120" />
-                <TextBox x:Name="" Width="200" />
+                <TextBox  Width="200" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                 <TextBlock Text="Date: " FontWeight="Bold" Width="120" />
