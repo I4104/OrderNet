@@ -5,8 +5,6 @@ namespace OrderQuanNet.DataManager
 {
     public static class HistoryDataManager
     {
-        public static bool isUpdated = false;
-
         public static List<OrdersModel> OrdersHistory = new List<OrdersModel>();
         public static readonly Dictionary<string, string> StatusMappings = new Dictionary<string, string>
         {
@@ -20,7 +18,7 @@ namespace OrderQuanNet.DataManager
             OrdersHistory.Clear();
 
             OrdersService ordersService = new OrdersService();
-            List<OrdersModel> orders = ordersService.GetAllOrders(new OrdersModel() { users_id = SessionManager.users.id });
+            List<OrdersModel> orders = ordersService.GetAllOrders();
             foreach (var item in orders)
             {
                 item.status = StatusMappings[item.status];

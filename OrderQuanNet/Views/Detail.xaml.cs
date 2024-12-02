@@ -1,7 +1,7 @@
-﻿using OrderQuanNet.DataManager;
-using OrderQuanNet.Models;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media.Imaging;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
 
 namespace OrderQuanNet.Views
 {
@@ -22,7 +22,7 @@ namespace OrderQuanNet.Views
             }
 
             Title.Text = product.name;
-            Price.Text = product.price.ToString();
+            Price.Text = "Giá: " + string.Format("{0:N0}", product.price);
             ImagePath.Source = new BitmapImage(new Uri(product.image_path, UriKind.RelativeOrAbsolute));
 
             _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;

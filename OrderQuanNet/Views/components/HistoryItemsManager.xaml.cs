@@ -1,18 +1,10 @@
-﻿using OrderQuanNet.DataManager;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
+using OrderQuanNet.Services;
 
 namespace OrderQuanNet.Views.components
 {
@@ -76,23 +68,52 @@ namespace OrderQuanNet.Views.components
         public HistoryItemsManager()
         {
             InitializeComponent();
+            _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
+        }
+
+        private void ChangeOrdersStatus(object sender, RoutedEventArgs e)
+        {
+            int id = int.Parse(ProccessBtn.Tag.ToString());
+
+            OrdersService ordersService = new OrdersService();
+            OrdersModel orders = ordersService.GetById(id);
+
+            if (orders != null)
+            {
+                switch (orders.status)
+                {
+                    case "WAITING":
+                        orders.status = "PROCCESSING";
+                        break;
+                    case "PROCCESSING":
+                        orders.status = "DONE";
+                        break;
+                }
+                ordersService.Update(orders);
+                _updateCart?.Invoke();
+            }
         }
 
         private static void OnStatusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = (HistoryItems)d;
+            var control = (HistoryItemsManager)d;
             var status = e.NewValue as string;
             var statusBase = HistoryDataManager.StatusMappings.Where(x => x.Value == status).FirstOrDefault().Key;
             switch (statusBase)
             {
                 case "WAITING":
                     control.Foreground = new SolidColorBrush(Colors.Orange);
+                    control.ProccessBtn.Content = "Xác nhận";
+                    control.ProccessBtn.Background = new SolidColorBrush(Colors.DarkOrange);
                     break;
                 case "PROCCESSING":
                     control.Foreground = new SolidColorBrush(Colors.Coral);
+                    control.ProccessBtn.Content = "Hoàn thành";
+                    control.ProccessBtn.Background = new SolidColorBrush(Colors.ForestGreen);
                     break;
                 case "DONE":
                     control.Foreground = new SolidColorBrush(Colors.Green);
+                    control.ProccessBtn.Visibility = Visibility.Hidden;
                     break;
             }
         }
@@ -100,7 +121,7 @@ namespace OrderQuanNet.Views.components
 
         private static void OnItemIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var control = (HistoryItems)d;
+            var control = (HistoryItemsManager)d;
             var newIcon = e.NewValue as string;
 
             if (!string.IsNullOrEmpty(newIcon))
@@ -108,6 +129,5 @@ namespace OrderQuanNet.Views.components
                 control.ItemImage.Source = new BitmapImage(new Uri(newIcon, UriKind.RelativeOrAbsolute));
             }
         }
-
     }
 }

@@ -30,27 +30,22 @@
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0"  Height="30" Width=" 30" Source="\Resources\Images\usermanagement.png" Stretch="Fill" />
-
-                            <TextBlock Grid.Column="1" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0">QUẦY KHÁCH</TextBlock>
-
-                            <Button x:Name="Bill" Grid.Column="2" Height="30" Width=" 30" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Bill_Click">
-                                <Image Source="\Resources\Images\payment.png" Stretch="UniformToFill" HorizontalAlignment="Left" />
-                            </Button>
+                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0">DANH SÁCH ĐƠN HÀNG</TextBlock>
                         </Grid>
                     </StackPanel>
 
                 </StackPanel>
 
-                <ItemsControl Grid.Row="1" x:Name="FoodItemsControl">
+                <ItemsControl Grid.Row="1" x:Name="OrderItemsControl">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid x:Name="FoodGrid" Columns="5" Margin="2" VerticalAlignment="Top" />
+                            <UniformGrid Columns="3" Margin="2" VerticalAlignment="Top" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <component:HistoryItemsManager Amount="{Binding amount}" ItemName="{Binding name}" ItemPrice="{Binding price}" ItemId="{Binding id}" Status="{Binding status}" />
+                            <component:HistoryItemsManager Margin="0, 10" Amount="{Binding amount, StringFormat='Số lượng: {0:N0}'}" ItemName="{Binding name}" ImageSource="{Binding image_path}" ItemPrice="{Binding price, StringFormat='Giá tiền: {0:N0}'}" ItemId="{Binding id}" Status="{Binding status}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

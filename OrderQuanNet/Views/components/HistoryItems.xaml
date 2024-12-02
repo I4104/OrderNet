@@ -25,8 +25,8 @@
 
                 <TextBlock Grid.Row="0" Text="{Binding Path=ItemName, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontWeight="DemiBold" Foreground="Red" FontSize="16"/>
 
-                <TextBlock Grid.Row="1" Text="{Binding Path=ItemPrice, StringFormat='Giá tiền: {0:C}', RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
-                <TextBlock Grid.Row="2" Text="{Binding Path=Amount, StringFormat='Số lượng: {0:C}', RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
+                <TextBlock Grid.Row="1" Text="{Binding Path=ItemPrice, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
+                <TextBlock Grid.Row="2" Text="{Binding Path=Amount, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontSize="12" Foreground="#757575"/>
                 <TextBlock Grid.Row="3" Text="{Binding Path=Status, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalAlignment="Center" FontSize="12" Margin="0,5,0,0" FontWeight="Bold"/>
             </Grid>
         </StackPanel>

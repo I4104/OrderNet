@@ -1,7 +1,7 @@
-﻿using OrderQuanNet.DataManager;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using OrderQuanNet.DataManager;
 
 namespace OrderQuanNet.Views.components
 {

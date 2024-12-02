@@ -1,22 +1,12 @@
-﻿using OrderQuanNet.DataManager;
-using OrderQuanNet.Models;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
 
 namespace OrderQuanNet.Views
 {
-    public class HistoryItem
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string image_path { get; set; }
-        public decimal price { get; set; }
-        public string status { get; set; }
-        public int amount { get; set; }
-    }
-
     public partial class HistoryTab : UserControl
     {
         public HistoryTab()
@@ -28,7 +18,7 @@ namespace OrderQuanNet.Views
         private void loadHistory()
         {
             HistoryDataManager.LoadHistory();
-            List<OrdersModel> history = HistoryDataManager.OrdersHistory;
+            List<OrdersModel> history = HistoryDataManager.OrdersHistory.Where(o => o.users_id == SessionManager.users.id).ToList();
 
             List<HistoryItem> items = new List<HistoryItem>();
             foreach (var item in history)

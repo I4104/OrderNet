@@ -1,10 +1,10 @@
-﻿using OrderQuanNet.DataManager;
-using OrderQuanNet.Models;
-using OrderQuanNet.Services;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
+using OrderQuanNet.Services;
 
 namespace OrderQuanNet.Views
 {
@@ -48,7 +48,7 @@ namespace OrderQuanNet.Views
             }
 
             CartItemsControl.ItemsSource = cart;
-            total.Text = CartDataManager.getTotalPrice().ToString();
+            total.Text = string.Format("{0:N0}", CartDataManager.getTotalPrice());
         }
 
         private void ThanhToan(object sender, RoutedEventArgs e)

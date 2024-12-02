@@ -1,5 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
 
 namespace OrderQuanNet.Views
 {
@@ -8,6 +12,28 @@ namespace OrderQuanNet.Views
         public OrdersManager()
         {
             InitializeComponent();
+            loadOrders();
+        }
+
+        private void loadOrders()
+        {
+            HistoryDataManager.LoadHistory();
+            List<OrdersModel> history = HistoryDataManager.OrdersHistory;
+            List<HistoryItem> items = new List<HistoryItem>();
+            foreach (var item in history)
+            {
+                ProductsModel product = ProductDataManager.Products.Where(p => p.id == item.product_id).FirstOrDefault();
+                items.Add(new HistoryItem
+                {
+                    id = item.id.Value,
+                    amount = item.amount.Value,
+                    status = item.status,
+                    name = product.name,
+                    image_path = product.image_path,
+                    price = product.price.Value,
+                });
+            }
+            OrderItemsControl.ItemsSource = items;
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -22,33 +48,28 @@ namespace OrderQuanNet.Views
 
         private void UpdateRows()
         {
-            double itemWidth = 160;
+            double itemWidth = 250;
             int rowCount = (int)(this.ActualWidth / itemWidth);
-            OrderGrid.Columns = rowCount;
+
+            UniformGrid uniformGrid = FindUniformGrid(OrderItemsControl);
+            if (uniformGrid != null)
+            {
+                uniformGrid.Columns = rowCount;
+                uniformGrid.InvalidateMeasure();
+            }
         }
 
-        private void BtnProcess_Click(object sender, RoutedEventArgs e)
+        private UniformGrid FindUniformGrid(DependencyObject parent)
         {
-            StatusText.Text = "Đang xử lý";
-            btnProcess.Content = "Hoàn thành";
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child is UniformGrid uniformGrid) return uniformGrid;
 
-            btnProcess.Click -= BtnProcess_Click;
-            btnProcess.Click += BtnComplete_Click;
+                var foundChild = FindUniformGrid(child);
+                if (foundChild != null) return foundChild;
+            }
+            return null;
         }
-
-        private void BtnComplete_Click(object sender, RoutedEventArgs e)
-        {
-            StatusText.Text = "Đã xong";
-            btnProcess.Content = "Đã xong";
-
-            btnProcess.Click -= BtnComplete_Click;
-        }
-
-        private void Bill_Click(object sender, RoutedEventArgs e)
-        {
-            var billWindow = new Bill();
-            billWindow.ShowDialog();
-        }
-
     }
 }

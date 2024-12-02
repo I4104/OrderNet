@@ -1,10 +1,10 @@
-﻿using OrderQuanNet.DataManager;
-using OrderQuanNet.Views;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Views;
 
 namespace OrderQuanNet
 {
@@ -56,7 +56,7 @@ namespace OrderQuanNet
             if (SessionManager.users.type != "admin") ADMIN_SHOWING_MANAGEMENT.Visibility = Visibility.Hidden;
             UserCard.UserName = SessionManager.users.name;
             UserCard.UserType = SessionManager.users.type;
-
+            this.WindowState = WindowState.Maximized;
             SwitchOrderOrHistory(OrderTab);
             ReloadLayouts(null, null);
         }
