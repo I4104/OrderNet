@@ -27,33 +27,28 @@ namespace OrderQuanNet.Views
             OrderGrid.Columns = rowCount;
         }
 
-        // Sự kiện click cho nút Xử lý
         private void BtnProcess_Click(object sender, RoutedEventArgs e)
         {
-            // Thay đổi nội dung của TextBlock và nút
-            StatusText.Text = "Đang xử lý"; // Cập nhật trạng thái trong TextBlock
-            btnProcess.Content = "Hoàn thành"; // Thay đổi nút "Xử Lý" thành "Hoàn thành"
+            StatusText.Text = "Đang xử lý"; 
+            btnProcess.Content = "Hoàn thành"; 
 
-            // Thêm sự kiện click cho nút "Hoàn thành"
-            btnProcess.Click -= BtnProcess_Click; // Gỡ bỏ sự kiện cũ
-            btnProcess.Click += BtnComplete_Click; // Thêm sự kiện mới cho nút hoàn thành
+            btnProcess.Click -= BtnProcess_Click; 
+            btnProcess.Click += BtnComplete_Click; 
         }
 
         private void BtnComplete_Click(object sender, RoutedEventArgs e)
         {
-            // Thay đổi nội dung của TextBlock và nút
-            StatusText.Text = "Đã xong"; // Cập nhật trạng thái trong TextBlock
-            btnProcess.Content = "Đã xong"; // Nút chuyển thành "Đã hoàn thành"
+            StatusText.Text = "Đã xong"; 
+            btnProcess.Content = "Đã xong"; 
 
-            // Gỡ bỏ sự kiện click vì không cần thiết nữa
             btnProcess.Click -= BtnComplete_Click;
         }
 
-        // Sự kiện click cho nút Download
-        private void Download(object sender, RoutedEventArgs e)
+        private void Bill_Click(object sender, RoutedEventArgs e)
         {
-            Download downloadWindow = new Download();
-            downloadWindow.ShowDialog();
+            var billWindow = new Bill();
+            billWindow.ShowDialog();
         }
+
     }
 }

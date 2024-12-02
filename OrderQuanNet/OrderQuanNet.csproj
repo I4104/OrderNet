@@ -15,6 +15,7 @@
       <None Remove="Resources\Images\drink.png" />
       <None Remove="Resources\Images\food.png" />
       <None Remove="Resources\Images\man.png" />
+      <None Remove="Resources\Images\payment.png" />
       <None Remove="Resources\Images\phoboquannet.png" />
       <None Remove="Resources\Images\time.png" />
       <None Remove="Resources\Images\usermanagement.png" />
@@ -47,6 +48,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Resources\Images\orders.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Resources\Images\payment.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Resources\Images\phoboquannet.png">
