@@ -22,19 +22,7 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(UIElement.OpacityProperty, fadeIn);
         }
 
-        private void ChooseImage_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
-            };
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string selectedImagePath = openFileDialog.FileName;
-                txtImagePath.Text = selectedImagePath;
-            }
-        }
+        
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {

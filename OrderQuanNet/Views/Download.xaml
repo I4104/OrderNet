@@ -18,7 +18,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Close Button -->
         <Button Content="X"
                 Width="20" Height="20"
                 HorizontalAlignment="Right"
@@ -37,10 +36,8 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!-- Header -->
                 <TextBlock Text="Download File" FontSize="24" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Left" Margin="0,0,0,5" />
 
-                <!-- Content -->
                 <Border Grid.Row="1" Padding="5">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -48,14 +45,17 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-
-                        <!-- DataGrid to display products -->
-                        <DataGrid Name="ProductsDataGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10,0" AutoGenerateColumns="True" VerticalAlignment="Top" Height="280" IsReadOnly="True" >
+                        <DataGrid Name="ProductsDataGrid" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10,0" AutoGenerateColumns="False" VerticalAlignment="Top" Height="280" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*" />
+                                <DataGridTextColumn Header="Name" Binding="{Binding ten}" Width="*" />
+                                <DataGridTextColumn Header="UserName" Binding="{Binding tenDangNhap}" Width="*" />
+                                <DataGridTextColumn Header="Email" Binding="{Binding email}" Width="*" />
+                            </DataGrid.Columns>
                             <DataGrid.HorizontalScrollBarVisibility>Auto</DataGrid.HorizontalScrollBarVisibility>
                             <DataGrid.VerticalScrollBarVisibility>Auto</DataGrid.VerticalScrollBarVisibility>
                         </DataGrid>
 
-                        <!-- File export format selection -->
                         <Grid Grid.Row="1" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
