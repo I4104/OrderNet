@@ -13,7 +13,7 @@ namespace OrderQuanNet.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Fade-in animation for the window
+
             var fadeIn = new DoubleAnimation
             {
                 From = 0,
@@ -23,37 +23,21 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(OpacityProperty, fadeIn);
         }
 
-        private void ChooseImage_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
-            };
+        
 
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string selectedImagePath = openFileDialog.FileName;
-                txtImagePath.Text = selectedImagePath;  // Hiển thị đường dẫn ảnh
-            }
-        }
-
-        // Chức năng hủy bỏ
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); // Đóng cửa sổ nếu người dùng nhấn Cancel
+            this.Close(); 
         }
 
-        // Chức năng tạo người dùng
-        private void Create_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
-            // Lấy dữ liệu từ các trường nhập liệu
             string userName = txtUserName.Text;
             string email = txtEmail.Text;
-            string password = txtPassword.Password; // Dùng PasswordBox nên phải lấy bằng .Password
+            string password = txtPassword.Password; 
             string balance = txtBalance.Text;
             string imagePath = txtImagePath.Text;
 
-            // Kiểm tra xem người dùng đã nhập đầy đủ thông tin chưa
             if (string.IsNullOrWhiteSpace(userName) ||
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(password) ||
@@ -63,18 +47,17 @@ namespace OrderQuanNet.Views
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
-            // Hiển thị thông tin người dùng
             MessageBox.Show($"Tên người dùng: {userName}\nEmail: {email}\nMật khẩu: {password}\nSố dư: {balance}\nĐường dẫn hình ảnh: {imagePath}", "Thông tin người dùng");
-
-            // Đóng cửa sổ sau khi tạo
             this.Close();
         }
 
-        // Chức năng đóng cửa sổ
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Delete button clicked!");
+        }
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); // Đóng cửa sổ khi nhấn nút "X"
+            this.Close(); 
         }
     }
 }

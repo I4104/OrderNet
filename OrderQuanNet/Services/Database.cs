@@ -109,7 +109,6 @@ namespace OrderQuanNet.Services
 
         private IEnumerable<string> CreateParameters(T item, bool isParameter = false, bool excludeId = false)
         {
-            // Xử dụng yield để trả về từng dữ liệu, kết quả cuối cùng sẽ trả về 1 mảng
             foreach (var property in item.GetType().GetProperties())
             {
                 if (excludeId && property.Name == "id") continue;

@@ -22,7 +22,7 @@
                     <StackPanel VerticalAlignment="Center">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="30" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
@@ -31,8 +31,8 @@
 
                             <TextBlock Grid.Column="1" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0">QUẦY KHÁCH</TextBlock>
 
-                            <Button x:Name="DownloadButton" Grid.Column="2" Height="30" Width=" 30" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Download">
-                                <Image Source="\Resources\Images\download.png" Stretch="UniformToFill" HorizontalAlignment="Left" />
+                            <Button x:Name="Bill" Grid.Column="2" Height="30" Width=" 30" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Bill_Click">
+                                <Image Source="\Resources\Images\payment.png" Stretch="UniformToFill" HorizontalAlignment="Left" />
                             </Button>
                         </Grid>
                     </StackPanel>
