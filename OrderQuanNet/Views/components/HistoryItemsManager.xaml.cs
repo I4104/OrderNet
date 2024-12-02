@@ -1,32 +1,42 @@
 ﻿using OrderQuanNet.DataManager;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace OrderQuanNet.Views.components
 {
-    public partial class HistoryItems : UserControl
+    public partial class HistoryItemsManager : UserControl
     {
         private Action _updateCart;
 
         public static readonly DependencyProperty ImageSourceProperty = DependencyProperty.Register(
-            "ImageSource", typeof(string), typeof(HistoryItems), new PropertyMetadata(string.Empty, OnItemIconChanged));
+            "ImageSource", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty, OnItemIconChanged));
 
         public static readonly DependencyProperty AmountProperty = DependencyProperty.Register(
-            "Amount", typeof(string), typeof(HistoryItems), new PropertyMetadata(string.Empty));
+            "Amount", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty StatusProperty = DependencyProperty.Register(
-            "Status", typeof(string), typeof(HistoryItems), new PropertyMetadata(string.Empty, OnStatusChanged));
+            "Status", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty, OnStatusChanged));
 
         public static readonly DependencyProperty ItemIdProperty = DependencyProperty.Register(
-            "ItemId", typeof(string), typeof(HistoryItems), new PropertyMetadata(string.Empty));
+            "ItemId", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty ItemNameProperty = DependencyProperty.Register(
-            "ItemName", typeof(string), typeof(HistoryItems), new PropertyMetadata(string.Empty));
+            "ItemName", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty ItemPriceProperty = DependencyProperty.Register(
-            "ItemPrice", typeof(string), typeof(HistoryItems), new PropertyMetadata(string.Empty));
+            "ItemPrice", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty));
 
         public string ImageSource
         {
@@ -63,7 +73,7 @@ namespace OrderQuanNet.Views.components
             set { SetValue(StatusProperty, value); }
         }
 
-        public HistoryItems()
+        public HistoryItemsManager()
         {
             InitializeComponent();
         }
@@ -86,6 +96,7 @@ namespace OrderQuanNet.Views.components
                     break;
             }
         }
+
 
         private static void OnItemIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

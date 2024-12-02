@@ -5,32 +5,14 @@
         Background="White"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
+        WindowStyle="SingleBorderWindow"
         Loaded="Window_Loaded"
         AllowsTransparency="True">
 
-    <Grid>
-        <!-- Header with Close Button -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    
 
-        <!-- Close Button -->
-        <Button Content="X"
-                Width="20" Height="20"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Background="Transparent"
-                Foreground="#F44336"
-                FontWeight="Bold"
-                BorderThickness="0"
-                Click="CloseWindow_Click" />
-
-        <!-- Main Content -->
         <Border Grid.Row="1" Background="White" BorderBrush="#E5E7EB" BorderThickness="1" Padding="20,0,20,20">
             <StackPanel>
-                <!-- Header -->
                 <TextBlock Text="Add Product" 
                            FontSize="20" 
                            FontWeight="Bold" 
@@ -38,7 +20,6 @@
                            Margin="0,0,0,20" 
                            HorizontalAlignment="Left" />
 
-                <!-- Product Name -->
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <TextBlock Text="Product Name" 
                                FontSize="14" 
@@ -50,7 +31,6 @@
                     </Border>
                 </StackPanel>
 
-                <!-- Price -->
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <TextBlock Text="Price" 
                                FontSize="14" 
@@ -61,7 +41,6 @@
                         <TextBox x:Name="txtPrice" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
                     </Border>
                 </StackPanel>
-                <!-- Image Path -->
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                     <TextBlock Text="Image Path" 
                                FontSize="14" 
@@ -95,6 +74,7 @@
                             FontWeight="Bold" 
                             BorderBrush="Transparent" 
                             Margin="5" 
+                            VerticalAlignment="Center"      
                             Click="Cancel_Click" />
                     <Button Content="Create" 
                             Width="100" 
@@ -104,9 +84,9 @@
                             FontWeight="Bold" 
                             BorderBrush="Transparent" 
                             Margin="5" 
+                            VerticalAlignment="Center"
                             Click="Create_Click" />
                 </StackPanel>
             </StackPanel>
         </Border>
-    </Grid>
 </Window>

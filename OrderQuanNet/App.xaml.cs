@@ -2,7 +2,7 @@
 
 namespace OrderQuanNet;
 
- 
+
 public partial class App : Application
 {
 }

@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Microsoft.Win32;
 
 namespace OrderQuanNet.Views
 {
@@ -21,7 +20,7 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(UIElement.OpacityProperty, fadeIn);
         }
 
-         
+
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {

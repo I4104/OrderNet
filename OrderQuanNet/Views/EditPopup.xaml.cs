@@ -1,9 +1,8 @@
 ﻿using System.Windows;
-using Microsoft.Win32;
 
 namespace OrderQuanNet.Views
 {
-    
+
     public partial class EditPopup : Window
     {
         public EditPopup()
@@ -22,7 +21,7 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(UIElement.OpacityProperty, fadeIn);
         }
 
-        
+
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {

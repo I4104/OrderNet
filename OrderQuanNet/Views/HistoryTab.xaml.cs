@@ -1,9 +1,9 @@
-﻿using System.Windows;
+﻿using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using OrderQuanNet.DataManager;
-using OrderQuanNet.Models;
 
 namespace OrderQuanNet.Views
 {

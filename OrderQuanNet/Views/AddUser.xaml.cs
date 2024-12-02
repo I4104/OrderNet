@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Microsoft.Win32;
 
 namespace OrderQuanNet.Views
 {
@@ -21,18 +20,18 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(OpacityProperty, fadeIn);
         }
 
-         
+
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
             string userName = txtUserName.Text;
             string email = txtEmail.Text;
-            string password = txtPassword.Password; 
+            string password = txtPassword.Password;
             string balance = txtBalance.Text;
             string imagePath = txtImagePath.Text;
 
@@ -53,7 +52,7 @@ namespace OrderQuanNet.Views
 
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
     }
 }

@@ -6,120 +6,106 @@
         ResizeMode="NoResize"
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None">
+        WindowStyle="SingleBorderWindow">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <Button Content="X"
-                Width="20" Height="20"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Background="Transparent"
-                Foreground="#F44336"
-                FontWeight="Bold"
-                BorderThickness="0"
-                Click="CloseWindow_Click" />
 
-        <Border Grid.Row="1" Background="White" BorderBrush="#E5E7EB" BorderThickness="1" Padding="20,0,20,20">
-            <StackPanel>
-                <TextBlock Text="Add User" 
+    <Border Grid.Row="1" Background="White" BorderBrush="#E5E7EB" BorderThickness="1" Padding="20,0,20,20">
+        <StackPanel>
+            <TextBlock Text="Add User" 
                            FontSize="20" 
                            FontWeight="Bold" 
                            Foreground="#1F2937" 
                            Margin="0,0,0,20" 
                            HorizontalAlignment="Left" />
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <TextBlock Text="User Name" 
+            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                <TextBlock Text="User Name" 
                                FontSize="14" 
                                FontWeight="Bold" 
                                Foreground="#4B5563" 
                                Margin="0,0,0,5" />
-                    <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
-                        <TextBox x:Name="txtUserName" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
-                    </Border>
-                </StackPanel>
+                <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
+                    <TextBox x:Name="txtUserName" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
+                </Border>
+            </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <TextBlock Text="Email" 
+            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                <TextBlock Text="Email" 
                                FontSize="14" 
                                FontWeight="Bold" 
                                Foreground="#4B5563" 
                                Margin="0,0,0,5" />
-                    <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
-                        <TextBox x:Name="txtEmail" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
-                    </Border>
-                </StackPanel>
+                <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
+                    <TextBox x:Name="txtEmail" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
+                </Border>
+            </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <TextBlock Text="Password" 
+            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                <TextBlock Text="Password" 
                                FontSize="14" 
                                FontWeight="Bold" 
                                Foreground="#4B5563" 
                                Margin="0,0,0,5" />
-                    <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
-                        <PasswordBox x:Name="txtPassword" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
-                    </Border>
-                    <TextBlock Text="Too short" 
+                <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
+                    <PasswordBox x:Name="txtPassword" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
+                </Border>
+                <TextBlock Text="Too short" 
                                FontSize="12" 
                                Foreground="#F44336" 
                                Margin="5,5,0,0" 
                                Visibility="Collapsed" />
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,20">
-                    <TextBlock Text="Roles" 
+            <StackPanel Orientation="Vertical" Margin="0,0,0,20">
+                <TextBlock Text="Roles" 
                                FontSize="14" 
                                FontWeight="Bold" 
                                Foreground="#4B5563" 
                                Margin="0,0,0,5" />
-                    <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
-                        <ComboBox x:Name="cmbRoles" Height="40" BorderThickness="0" Background="Transparent">
-                            <ComboBoxItem Content="Admin" />
-                            <ComboBoxItem Content="User" />
-                        </ComboBox>
-                    </Border>
-                </StackPanel>
+                <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
+                    <ComboBox x:Name="cmbRoles" Height="40" BorderThickness="0" Background="Transparent">
+                        <ComboBoxItem Content="Admin" />
+                        <ComboBoxItem Content="User" />
+                    </ComboBox>
+                </Border>
+            </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <TextBlock Text="Balance" 
+            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                <TextBlock Text="Balance" 
                                FontSize="14" 
                                FontWeight="Bold" 
                                Foreground="#4B5563" 
                                Margin="0,0,0,5" />
-                    <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
-                        <TextBox x:Name="txtBalance" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
-                    </Border>
-                </StackPanel>
+                <Border Background="#F9FAFB" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="5">
+                    <TextBox x:Name="txtBalance" Height="40" BorderThickness="0" Padding="10" Background="Transparent" />
+                </Border>
+            </StackPanel>
 
-                <StackPanel Orientation="Vertical" Margin="0,0,0,10">
-                    <TextBlock Text="Image Path" 
+            <StackPanel Orientation="Vertical" Margin="0,0,0,10">
+                <TextBlock Text="Image Path" 
                FontSize="14" 
                FontWeight="Bold" 
                Foreground="#4B5563" 
                Margin="0,0,0,5" />
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Border Background="#F9FAFB" BorderBrush="#D1D5DB" Grid.Column="1" BorderThickness="1" CornerRadius="5">
-                            <TextBox x:Name="txtImagePath" 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Background="#F9FAFB" BorderBrush="#D1D5DB" Grid.Column="1" BorderThickness="1" CornerRadius="5">
+                        <TextBox x:Name="txtImagePath" 
                                      Height="40" 
                                      BorderThickness="1" 
                                      Padding="10" 
                                      Background="Transparent" 
-                                     IsReadOnly="True" /> 
-                        </Border>
-                    </Grid>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-                    <Button Content="Cancel" 
+                                     IsReadOnly="True" />
+                    </Border>
+                </Grid>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                <Button Content="Cancel" 
                             Width="100" 
                             Height="40" 
                             Background="#E5E7EB" 
@@ -127,8 +113,9 @@
                             FontWeight="Bold" 
                             BorderBrush="Transparent" 
                             Margin="5" 
+                            VerticalAlignment="Center"
                             Click="Cancel_Click" />
-                    <Button Content="Create" 
+                <Button Content="Create" 
                             Width="100" 
                             Height="40" 
                             Background="#6366F1" 
@@ -136,9 +123,9 @@
                             FontWeight="Bold" 
                             BorderBrush="Transparent" 
                             Margin="5" 
+                            VerticalAlignment="Center"
                             Click="Create_Click" />
-                </StackPanel>
             </StackPanel>
-        </Border>
-    </Grid>
+        </StackPanel>
+    </Border>
 </Window>

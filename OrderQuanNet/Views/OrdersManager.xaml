@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OrderQuanNet.Views"
+             xmlns:component="clr-namespace:OrderQuanNet.Views.components"
              mc:Ignorable="d" 
              Background="Transparent"
              d:DesignHeight="450" d:DesignWidth="800"
@@ -17,7 +19,7 @@
                     <RowDefinition Height="30" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-
+                
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel VerticalAlignment="Center">
                         <Grid>
@@ -39,69 +41,19 @@
 
                 </StackPanel>
 
-                <UniformGrid Grid.Row="1" x:Name="OrderGrid" Columns="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Border CornerRadius="10" Height="150" Width="240" BorderThickness="1" BorderBrush="#E0E0E0" Margin="5" Padding="0" Background="White">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                <ItemsControl Grid.Row="1" x:Name="FoodItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid x:Name="FoodGrid" Columns="5" Margin="2" VerticalAlignment="Top" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-                            <Border CornerRadius="5" Background="#F7F7F7" Height="130" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
-                                <Image Source="\Resources\Images\phoboquannet.png" Height="125" Width="100" Stretch="UniformToFill" Margin="0"/>
-                            </Border>
-
-                            <Grid Grid.Column="1" Margin="10,0,0,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Text="Bánh mì pate trứng" Grid.Row="0" FontSize="14" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,4" TextWrapping="Wrap"/>
-                                <TextBlock Text="#2083212 - 17:49 25/11/2024" Grid.Row="1" FontSize="12" Foreground="#757575" Margin="0,0,0,4" TextWrapping="Wrap"/>
-                                
-                                <TextBlock Text="25.000đ" Grid.Row="2" FontSize="13" Foreground="#27BB00" FontWeight="Bold" Margin="0,0,0,6"/>
-                                <Grid Grid.Row="3">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock x:Name="StatusText" Text="Chờ xử lý" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Foreground="#F57C00" FontWeight="Bold" />
-
-                                    <Button x:Name="btnProcess" Grid.Column="1" Content="Xử Lý" Width="70" Height="25" FontSize="12" Background="#F57C00" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5,0,5,0" Click="BtnProcess_Click">
-                                        <Button.Template>
-                                            <ControlTemplate TargetType="Button">
-                                                <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1" CornerRadius="5">
-                                                    <Border.Effect>
-                                                        <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="3" Opacity="0.3"/>
-                                                    </Border.Effect>
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Button.Template>
-                                        <Button.Style>
-                                            <Style TargetType="Button">
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="Effect">
-                                                            <Setter.Value>
-                                                                <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="5" Opacity="0.5"/>
-                                                            </Setter.Value>
-                                                        </Setter>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Border>
-                </UniformGrid>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <component:HistoryItemsManager Amount="{Binding amount}" ItemName="{Binding name}" ItemPrice="{Binding price}" ItemId="{Binding id}" Status="{Binding status}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
         </ScrollViewer>
     </Border>

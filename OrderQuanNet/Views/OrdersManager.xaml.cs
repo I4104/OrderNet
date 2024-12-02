@@ -29,17 +29,17 @@ namespace OrderQuanNet.Views
 
         private void BtnProcess_Click(object sender, RoutedEventArgs e)
         {
-            StatusText.Text = "Đang xử lý"; 
-            btnProcess.Content = "Hoàn thành"; 
+            StatusText.Text = "Đang xử lý";
+            btnProcess.Content = "Hoàn thành";
 
-            btnProcess.Click -= BtnProcess_Click; 
-            btnProcess.Click += BtnComplete_Click; 
+            btnProcess.Click -= BtnProcess_Click;
+            btnProcess.Click += BtnComplete_Click;
         }
 
         private void BtnComplete_Click(object sender, RoutedEventArgs e)
         {
-            StatusText.Text = "Đã xong"; 
-            btnProcess.Content = "Đã xong"; 
+            StatusText.Text = "Đã xong";
+            btnProcess.Content = "Đã xong";
 
             btnProcess.Click -= BtnComplete_Click;
         }

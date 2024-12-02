@@ -1,8 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using OrderQuanNet.DataManager;
+﻿using OrderQuanNet.DataManager;
 using OrderQuanNet.Models;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace OrderQuanNet.Views
 {

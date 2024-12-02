@@ -1,9 +1,8 @@
-﻿using System.Linq;
+﻿using OrderQuanNet.DataManager;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using OrderQuanNet.DataManager;
 
 namespace OrderQuanNet.Views
 {
@@ -27,9 +26,9 @@ namespace OrderQuanNet.Views
 
         private void DynamicButtonClick(object sender, RoutedEventArgs e)
         {
-            if (SessionManager.users.type == "admin")  
+            if (SessionManager.users.type == "admin")
                 EditPopup(sender, e);
-            else 
+            else
                 PopupTab(sender, e);
         }
 

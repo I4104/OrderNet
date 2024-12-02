@@ -1,8 +1,8 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using OrderQuanNet.DataManager;
+﻿using OrderQuanNet.DataManager;
 using OrderQuanNet.Models;
 using OrderQuanNet.Services;
+using System.Windows;
+using System.Windows.Input;
 
 namespace OrderQuanNet
 {

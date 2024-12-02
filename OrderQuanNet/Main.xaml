@@ -10,7 +10,7 @@
         BorderThickness="0"
         BorderBrush="Transparent"
         Title="ORDER DỊCH VỤ QUÁN NET" MinHeight="650" MinWidth="1000" WindowStyle="SingleBorderWindow" 
-        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen"  SizeChanged="ReloadLayouts" Loaded="ReloadLayouts" StateChanged="ReloadLayouts">
+        ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen" SizeChanged="ReloadLayouts" Loaded="ReloadLayouts" StateChanged="ReloadLayouts">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="Green"/>

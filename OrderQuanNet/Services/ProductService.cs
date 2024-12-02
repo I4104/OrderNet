@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using OrderQuanNet.Models;
+﻿using OrderQuanNet.Models;
 
 namespace OrderQuanNet.Services
 {

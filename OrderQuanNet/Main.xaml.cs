@@ -1,20 +1,16 @@
-﻿using System.Security.Cryptography;
+﻿using OrderQuanNet.DataManager;
+using OrderQuanNet.Views;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
-using OrderQuanNet.DataManager;
-using OrderQuanNet.Models;
-using OrderQuanNet.Services;
-using OrderQuanNet.Views;
 
 namespace OrderQuanNet
 {
     public partial class Main : Window
     {
         public Action UpdateCartAction { get; set; }
-
         public static string HashMD5(string input)
         {
             using (MD5 md5 = MD5.Create())
@@ -27,7 +23,6 @@ namespace OrderQuanNet
                 return sb.ToString().ToLower();
             }
         }
-
         private enum TabType { Food, Drink, Time, OrdersManager, UserManager }
         private enum RightBarType { Orders, History }
 
@@ -36,6 +31,8 @@ namespace OrderQuanNet
 
         public Main()
         {
+            InitializeComponent();
+
             if (SessionManager.users == null)
             {
                 this.Hide();
@@ -50,19 +47,18 @@ namespace OrderQuanNet
                 this.Show();
             }
 
-            InitializeComponent();
             SetInitialContent();
             UpdateCartAction = () => { ReloadLayouts(null, null); };
         }
         private void SetInitialContent()
         {
-            
+
             if (SessionManager.users.type != "admin") ADMIN_SHOWING_MANAGEMENT.Visibility = Visibility.Hidden;
             UserCard.UserName = SessionManager.users.name;
             UserCard.UserType = SessionManager.users.type;
 
-            ReloadLayouts(null, null);
             SwitchOrderOrHistory(OrderTab);
+            ReloadLayouts(null, null);
         }
 
         private void OrderToggle(object sender, EventArgs e) { SwitchRightBar(RightBarType.Orders); }

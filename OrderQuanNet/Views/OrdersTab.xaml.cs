@@ -1,10 +1,10 @@
-﻿using System.Windows;
+﻿using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
+using OrderQuanNet.Services;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using OrderQuanNet.DataManager;
-using OrderQuanNet.Models;
-using OrderQuanNet.Services;
 
 namespace OrderQuanNet.Views
 {
@@ -26,7 +26,7 @@ namespace OrderQuanNet.Views
             InitializeComponent();
             UpdateRows();
             loadData();
-            _updateCart = ((Main) Application.Current.MainWindow).UpdateCartAction;
+            _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
         }
 
         private void loadData()
