@@ -39,7 +39,7 @@
                                  BorderThickness="0" 
                                  Padding="5" 
                                  Background="Transparent"
-                                 TextChanged="txtImageURL_TextChanged"/>
+                                 LostFocus="txtImageURL_LostFocus" />
                     </Border>
                 </StackPanel>
 
@@ -76,15 +76,6 @@
                         BorderBrush="Transparent" 
                         Margin="5" 
                         Click="Cancel_Click" />
-                <Button Content="Save" 
-                        Width="70" 
-                        Height="30" 
-                        Background="#6366F1" 
-                        Foreground="White" 
-                        FontWeight="Bold" 
-                        BorderBrush="Transparent" 
-                        Margin="5" 
-                        Click="Save_Click" />
                 <Button Content="Delete" 
                         Width="70" 
                         Height="30" 
@@ -94,6 +85,15 @@
                         BorderBrush="Transparent" 
                         Margin="5" 
                         Click="Delete_Click" />
+                <Button Content="Save" 
+                        Width="70" 
+                        Height="30" 
+                        Background="#6366F1" 
+                        Foreground="White" 
+                        FontWeight="Bold" 
+                        BorderBrush="Transparent" 
+                        Margin="5" 
+                        Click="Save_Click" />
             </StackPanel>
         </Grid>
     </Border>

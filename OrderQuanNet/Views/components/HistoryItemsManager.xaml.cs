@@ -76,7 +76,7 @@ namespace OrderQuanNet.Views.components
             int id = int.Parse(ProccessBtn.Tag.ToString());
 
             OrdersService ordersService = new OrdersService();
-            OrdersModel orders = ordersService.GetById(id);
+            OrdersModel orders = ordersService.SelectById(id);
 
             if (orders != null)
             {

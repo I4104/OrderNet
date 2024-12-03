@@ -23,7 +23,7 @@ namespace OrderQuanNet.DataManager
         public static void LoadProducts()
         {
             ProductsService productsService = new ProductsService();
-            ProductDataManager.Products = productsService.GetAll();
+            ProductDataManager.Products = productsService.SelectAll();
         }
     }
 }

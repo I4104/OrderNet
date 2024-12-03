@@ -18,7 +18,7 @@ namespace OrderQuanNet.DataManager
             OrdersHistory.Clear();
 
             OrdersService ordersService = new OrdersService();
-            List<OrdersModel> orders = ordersService.GetAllOrders();
+            List<OrdersModel> orders = ordersService.SelectAll();
             foreach (var item in orders)
             {
                 item.status = StatusMappings[item.status];

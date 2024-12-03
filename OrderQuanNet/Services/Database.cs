@@ -7,10 +7,7 @@ namespace OrderQuanNet.Services
         private static readonly string _connectionString = "Server=localhost;Database=OrderQuanNet;Trusted_Connection=True;";
         private readonly string _tableName;
 
-        public Database(string tableName)
-        {
-            _tableName = tableName;
-        }
+        public Database(string tableName) { _tableName = tableName; }
 
         public bool Insert(T item)
         {

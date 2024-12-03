@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using OrderQuanNet.Views.components.popup;
 
 namespace OrderQuanNet.Views
 {
@@ -22,14 +23,10 @@ namespace OrderQuanNet.Views
             if (IsAdmin)
             {
                 AddButton.Visibility = Visibility.Visible;
-
             }
             else
             {
                 AddButton.Visibility = Visibility.Collapsed;
-                
-
-
             }
         }
 
@@ -43,22 +40,19 @@ namespace OrderQuanNet.Views
 
         private void DynamicButtonClick(object sender, RoutedEventArgs e)
         {
-            if (IsAdmin)
-            {
-                EditPopupUserManager(sender, e);
-            }
-
+            if (IsAdmin) EditPopupUserManager(sender, e);
         }
 
         private void EditPopupUserManager(object sender, RoutedEventArgs e)
         {
-            components.popup.EditPopupUser editWindow = new components.popup.EditPopupUser();
+            Button button = (Button)sender;
+            EditPopup editWindow = new EditPopup(int.Parse(button.Tag.ToString()));
             editWindow.ShowDialog();
         }
         private void AddUserManager(object sender, RoutedEventArgs e)
         {
-            components.popup.Add addWindow = new components.popup.Add();
-            addWindow.ShowDialog();
+            //Add addWindow = new Add("user");
+            //addWindow.ShowDialog();
         }
         
     }

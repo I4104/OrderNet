@@ -26,7 +26,7 @@ namespace OrderQuanNet.DataManager
         public static decimal getTotalPrice()
         {
             ProductsService productsService = new ProductsService();
-            return (decimal)cartItems.Sum(item => productsService.GetById(item.Key).price * item.Value);
+            return (decimal)cartItems.Sum(item => productsService.SelectById(item.Key).price * item.Value);
         }
     }
 }

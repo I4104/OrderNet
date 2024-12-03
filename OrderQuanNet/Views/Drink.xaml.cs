@@ -1,17 +1,22 @@
-﻿using System.Windows;
+﻿using System.Reflection;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using OrderQuanNet.DataManager;
+using OrderQuanNet.Views.components.popup;
 
 namespace OrderQuanNet.Views
 {
     public partial class Drink : UserControl
     {
+        private Action _updateCart;
+
         public Drink()
         {
             InitializeComponent();
             LoadDrinkProducts();
+            _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
         }
 
         private void LoadDrinkProducts()
@@ -39,6 +44,18 @@ namespace OrderQuanNet.Views
                 AddButton.Visibility = Visibility.Hidden;
         }
 
+        private void Add(object sender, RoutedEventArgs e)
+        {
+            Add addWindow = new Add("drink");
+            addWindow.ShowDialog();
+        }
+
+        private void Reset(object sender, RoutedEventArgs e)
+        {
+            ProductDataManager.LoadProducts();
+            _updateCart?.Invoke();
+        }
+        
         private void UpdateRows()
         {
             double itemWidth = 160;
@@ -63,38 +80,6 @@ namespace OrderQuanNet.Views
                 if (foundChild != null) return foundChild;
             }
             return null;
-        }
-
-        private void DynamicButtonClick(object sender, RoutedEventArgs e)
-        {
-            if (SessionManager.users.type == "admin")
-                EditPopup(sender, e);
-            else
-                PopupTab(sender, e);
-        }
-
-        private void PopupTab(object sender, RoutedEventArgs e)
-        {
-            Button button = (Button)sender;
-
-            components.popup.Detail detailWindow = new components.popup.Detail(int.Parse(button.Tag.ToString()));
-            detailWindow.ShowDialog();
-        }
-
-        private void EditPopup(object sender, RoutedEventArgs e)
-        {
-            components.popup.EditPopup editWindow = new components.popup.EditPopup();
-            editWindow.ShowDialog();
-        }
-        private void Add(object sender, RoutedEventArgs e)
-        {
-            components.popup.Add addWindow = new components.popup.Add();
-            addWindow.ShowDialog();
-        }
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("reset");
-
         }
     }
 }

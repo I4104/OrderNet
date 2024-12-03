@@ -5,26 +5,11 @@ namespace OrderQuanNet.Services
     public class UsersService
     {
         private readonly Database<UsersModel> _database;
+        public UsersService() { _database = new Database<UsersModel>("Users"); }
 
-        public UsersService()
-        {
-            _database = new Database<UsersModel>("Users");
-        }
-
-        public bool Insert(UsersModel user)
-        {
-            return _database.Insert(user);
-        }
-
-        public bool Update(UsersModel user)
-        {
-            return _database.Update(user);
-        }
-
-        public bool Delete(UsersModel user)
-        {
-            return _database.Delete(user);
-        }
+        public bool Insert(UsersModel user) { return _database.Insert(user); }
+        public bool Update(UsersModel user) { return _database.Update(user); }
+        public bool Delete(UsersModel user) { return _database.Delete(user); }
 
         public UsersModel Select(UsersModel user)
         {
@@ -44,7 +29,7 @@ namespace OrderQuanNet.Services
             return null;
         }
 
-        public UsersModel GetById(int id)
+        public UsersModel SelectById(int id)
         {
             using var reader = _database.SelectById(id);
             if (reader.Read())
@@ -62,7 +47,7 @@ namespace OrderQuanNet.Services
             return null;
         }
 
-        public List<UsersModel> GetAll()
+        public List<UsersModel> SelectAll()
         {
             var users = new List<UsersModel>();
             using var reader = _database.SelectAll();

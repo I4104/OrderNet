@@ -5,27 +5,12 @@ namespace OrderQuanNet.Services
     public class ProductsService
     {
         private readonly Database<ProductsModel> _database;
-
-        public ProductsService()
-        {
-            _database = new Database<ProductsModel>("Products");
-        }
-
-        public bool Insert(ProductsModel product)
-        {
-            return _database.Insert(product);
-        }
-
-        public bool Update(ProductsModel product)
-        {
-            return _database.Update(product);
-        }
-
-        public bool Delete(ProductsModel product)
-        {
-            return _database.Delete(product);
-        }
-
+        public ProductsService() { _database = new Database<ProductsModel>("Products"); }
+        
+        public bool Insert(ProductsModel product) { return _database.Insert(product); }
+        public bool Update(ProductsModel product) { return _database.Update(product); }
+        public bool Delete(ProductsModel product) { return _database.Delete(product); }
+        
         public ProductsModel Select(ProductsModel product)
         {
             using var reader = _database.Select(product);
@@ -43,7 +28,7 @@ namespace OrderQuanNet.Services
             return null;
         }
 
-        public ProductsModel GetById(int id)
+        public ProductsModel SelectById(int id)
         {
             using var reader = _database.SelectById(id);
             if (reader.Read())
@@ -60,7 +45,7 @@ namespace OrderQuanNet.Services
             return null;
         }
 
-        public List<ProductsModel> GetAll()
+        public List<ProductsModel> SelectAll()
         {
             var products = new List<ProductsModel>();
             using var reader = _database.SelectAll();
