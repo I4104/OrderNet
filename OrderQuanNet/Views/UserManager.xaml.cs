@@ -46,13 +46,21 @@ namespace OrderQuanNet.Views
         private void EditPopupUserManager(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            EditPopup editWindow = new EditPopup(int.Parse(button.Tag.ToString()));
-            editWindow.ShowDialog();
+
+            if (button.Tag != null && int.TryParse(button.Tag.ToString(), out int parsedValue))
+            {
+                EditPopupUser editWindow = new EditPopupUser(parsedValue);
+                editWindow.ShowDialog();  
+            }
+            else
+            {
+                MessageBox.Show("Invalid product ID.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void AddUserManager(object sender, RoutedEventArgs e)
         {
-            //Add addWindow = new Add("user");
-            //addWindow.ShowDialog();
+            AddUser addWindow = new AddUser("user");
+            addWindow.ShowDialog();
         }
         
     }

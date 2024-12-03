@@ -39,9 +39,17 @@ namespace OrderQuanNet.Views
         {
             UpdateRows();
             if (SessionManager.users.type == "admin")
+            {
                 AddButton.Visibility = Visibility.Visible;
+                ResetButton.Visibility = Visibility.Visible;
+            }
             else
-                AddButton.Visibility = Visibility.Hidden;
+            {
+                AddButton.Visibility = Visibility.Visible;
+                ResetButton.Visibility = Visibility.Visible;
+            }
+;
+
         }
 
         private void Add(object sender, RoutedEventArgs e)
@@ -81,5 +89,7 @@ namespace OrderQuanNet.Views
             }
             return null;
         }
+      
+       
     }
 }

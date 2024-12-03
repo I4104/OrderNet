@@ -49,9 +49,16 @@ namespace OrderQuanNet.Views
             UpdateRows();
 
             if (SessionManager.users.type == "admin")
+            {
                 AddButton.Visibility = Visibility.Visible;
+                ResetButton.Visibility = Visibility.Visible;
+            }
             else
-                AddButton.Visibility = Visibility.Hidden;
+            {
+                AddButton.Visibility = Visibility.Visible;
+                ResetButton.Visibility = Visibility.Visible;
+            }
+
         }
 
         private void UpdateRows()
@@ -66,6 +73,8 @@ namespace OrderQuanNet.Views
                 uniformGrid.InvalidateMeasure();
             }
         }
+        
+
 
         // Code này để tìm UniformGrid bên trong ItemSource.
         // Vì load thông qua ItemSource nên ko thể sử dụng được trực tiếp
@@ -83,7 +92,9 @@ namespace OrderQuanNet.Views
         }
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
+
             MessageBox.Show("reset");
+
         }
     }
 }

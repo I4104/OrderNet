@@ -4,7 +4,7 @@ namespace OrderQuanNet.Views.components.popup
 {
     public partial class AddUser : Window
     {
-        public AddUser()
+        public AddUser(string v)
         {
             InitializeComponent();
         }

@@ -5,7 +5,7 @@ namespace OrderQuanNet.Views.components.popup
 {
     public partial class EditPopupUser : Window
     {
-        public EditPopupUser()
+        public EditPopupUser(int v)
         {
             InitializeComponent();
         }

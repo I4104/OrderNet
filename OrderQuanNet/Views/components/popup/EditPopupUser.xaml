@@ -8,9 +8,6 @@
         WindowStyle="SingleBorderWindow"
         Loaded="Window_Loaded">
 
-
-
-
     <Border Grid.Row="1" Background="White" BorderBrush="#E5E7EB" BorderThickness="1" Padding="20,0,20,20">
         <StackPanel>
             <TextBlock Text="Edit User" 

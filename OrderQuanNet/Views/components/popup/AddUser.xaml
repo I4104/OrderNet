@@ -99,8 +99,7 @@
                                      Height="40" 
                                      BorderThickness="1" 
                                      Padding="10" 
-                                     Background="Transparent" 
-                                     IsReadOnly="True" />
+                                     Background="Transparent"  />
                     </Border>
                 </Grid>
             </StackPanel>

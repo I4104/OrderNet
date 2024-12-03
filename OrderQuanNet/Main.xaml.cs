@@ -54,6 +54,7 @@ namespace OrderQuanNet
         {
 
             if (SessionManager.users.type != "admin") ADMIN_SHOWING_MANAGEMENT.Visibility = Visibility.Hidden;
+
             UserCard.UserName = SessionManager.users.name;
             UserCard.UserType = SessionManager.users.type;
             this.WindowState = WindowState.Maximized;
