@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Height="120" Width="240"
              Background="Transparent">
-    <Border CornerRadius="10" Height="120" Width="240" BorderThickness="1" BorderBrush="#E0E0E0" Margin="0" Padding="0" Background="White">
+    <Border CornerRadius="10" Height="120" Width="220" BorderThickness="1" BorderBrush="#E0E0E0" Margin="0" Padding="0" Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>

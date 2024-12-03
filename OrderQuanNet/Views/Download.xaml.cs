@@ -72,7 +72,7 @@ namespace OrderQuanNet.Views
             this.Close();
         }
 
-        private void Create_Click(object sender, RoutedEventArgs e)
+        private void Export_Click(object sender, RoutedEventArgs e)
         {
             ExportData();
         }

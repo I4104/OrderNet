@@ -22,13 +22,12 @@ namespace OrderQuanNet.Views
             if (IsAdmin)
             {
                 AddButton.Visibility = Visibility.Visible;
-                DownloadButton.Visibility = Visibility.Visible;
 
             }
             else
             {
                 AddButton.Visibility = Visibility.Collapsed;
-                DownloadButton.Visibility = Visibility.Collapsed;
+                
 
 
             }
@@ -61,10 +60,6 @@ namespace OrderQuanNet.Views
             Add addWindow = new Add();
             addWindow.ShowDialog();
         }
-        private void Download(object sender, RoutedEventArgs e)
-        {
-            Download downloadWindow = new Download();
-            downloadWindow.ShowDialog();
-        }
+        
     }
 }

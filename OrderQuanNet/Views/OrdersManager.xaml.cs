@@ -48,7 +48,7 @@ namespace OrderQuanNet.Views
 
         private void UpdateRows()
         {
-            double itemWidth = 250;
+            double itemWidth = 220;
             int rowCount = (int)(this.ActualWidth / itemWidth);
 
             UniformGrid uniformGrid = FindUniformGrid(OrderItemsControl);
@@ -70,6 +70,11 @@ namespace OrderQuanNet.Views
                 if (foundChild != null) return foundChild;
             }
             return null;
+        }
+        private void Export(object sender, RoutedEventArgs e)
+        {
+            Download downloadWindow = new Download();
+            downloadWindow.ShowDialog();
         }
     }
 }

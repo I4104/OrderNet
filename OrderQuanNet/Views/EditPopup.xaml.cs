@@ -1,8 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace OrderQuanNet.Views
 {
-
     public partial class EditPopup : Window
     {
         public EditPopup()
@@ -21,30 +22,48 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(UIElement.OpacityProperty, fadeIn);
         }
 
-
+        private void txtImageURL_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                string imageUrl = txtImageURL.Text;
+                if (!string.IsNullOrWhiteSpace(imageUrl))
+                {
+                    imgProduct.Source = new BitmapImage(new Uri(imageUrl, UriKind.Absolute));
+                }
+                else
+                {
+                    imgProduct.Source = null;  
+                }
+            }
+            catch (Exception)
+            {
+                imgProduct.Source = null;  
+            }
+        }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             string productName = txtProductName.Text;
-            string Price = txtPrice.Text;
-            string imagePath = txtImagePath.Text;
+            string price = txtPrice.Text;
+            string imagePath = txtImageURL.Text;
 
-            if (string.IsNullOrWhiteSpace(productName) || string.IsNullOrWhiteSpace(Price) || string.IsNullOrWhiteSpace(imagePath))
+            if (string.IsNullOrWhiteSpace(productName) || string.IsNullOrWhiteSpace(price) || string.IsNullOrWhiteSpace(imagePath))
             {
                 MessageBox.Show("Please fill in all the required fields.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (!decimal.TryParse(Price, out decimal PriceValue))
+            if (!decimal.TryParse(price, out decimal priceValue))
             {
-                MessageBox.Show("Balance must be a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Price must be a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            MessageBox.Show($"Product Name: {productName}\nBalance: {PriceValue:C}\nImage Path: {imagePath}", "Product Information");
-
+            MessageBox.Show($"Product Name: {productName}\nPrice: {priceValue:C}\nImage Path: {imagePath}", "Product Information");
             this.Close();
         }
+
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Delete button clicked!");
