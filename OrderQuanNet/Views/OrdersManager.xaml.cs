@@ -73,7 +73,7 @@ namespace OrderQuanNet.Views
         }
         private void Export(object sender, RoutedEventArgs e)
         {
-            Download downloadWindow = new Download();
+            components.popup.Download downloadWindow = new components.popup.Download();
             downloadWindow.ShowDialog();
         }
     }

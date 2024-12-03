@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 using OrderQuanNet.DataManager;
 using OrderQuanNet.Models;
 
-namespace OrderQuanNet.Views
+namespace OrderQuanNet.Views.components.popup
 {
     public partial class Detail : Window
     {

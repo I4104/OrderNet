@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace OrderQuanNet.Views
+namespace OrderQuanNet.Views.components.popup
 {
     public partial class Download : Window
     {

@@ -52,12 +52,12 @@ namespace OrderQuanNet.Views
 
         private void EditPopupUserManager(object sender, RoutedEventArgs e)
         {
-            EditPopup editWindow = new EditPopup();
+            components.popup.EditPopup editWindow = new components.popup.EditPopup();
             editWindow.ShowDialog();
         }
         private void AddUserManager(object sender, RoutedEventArgs e)
         {
-            Add addWindow = new Add();
+            components.popup.Add addWindow = new components.popup.Add();
             addWindow.ShowDialog();
         }
         

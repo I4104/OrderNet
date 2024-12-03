@@ -2,11 +2,11 @@
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace OrderQuanNet.Views
+namespace OrderQuanNet.Views.components.popup
 {
-    public partial class Add : Window
+    public partial class EditPopup : Window
     {
-        public Add()
+        public EditPopup()
         {
             InitializeComponent();
         }
@@ -22,62 +22,60 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(UIElement.OpacityProperty, fadeIn);
         }
 
-        private void txtImagePath_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void txtImageURL_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             try
             {
-                string imageUrl = txtImagePath.Text;
+                string imageUrl = txtImageURL.Text;
                 if (!string.IsNullOrWhiteSpace(imageUrl))
                 {
                     imgProduct.Source = new BitmapImage(new Uri(imageUrl, UriKind.Absolute));
                 }
                 else
                 {
-                    imgProduct.Source = null; // Xóa ảnh nếu URL trống
+                    imgProduct.Source = null;  
                 }
             }
             catch (Exception)
             {
-                imgProduct.Source = null; // Trường hợp URL không hợp lệ
+                imgProduct.Source = null;  
             }
         }
 
-        private void Create_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             string productName = txtProductName.Text;
-            string Price = txtPrice.Text;
-            string imagePath = txtImagePath.Text;
+            string price = txtPrice.Text;
+            string imagePath = txtImageURL.Text;
 
-            // Validation for empty fields
-            if (string.IsNullOrWhiteSpace(productName) || string.IsNullOrWhiteSpace(Price) || string.IsNullOrWhiteSpace(imagePath))
+            if (string.IsNullOrWhiteSpace(productName) || string.IsNullOrWhiteSpace(price) || string.IsNullOrWhiteSpace(imagePath))
             {
                 MessageBox.Show("Please fill in all the required fields.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Validate if balance is a valid number
-            if (!decimal.TryParse(Price, out decimal PriceValue))
+            if (!decimal.TryParse(price, out decimal priceValue))
             {
                 MessageBox.Show("Price must be a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Confirmation message
-            MessageBox.Show($"Product Name: {productName}\nPrice: {PriceValue:C}\nImage Path: {imagePath}", "Product Information");
-
-            // Close the window after saving
+            MessageBox.Show($"Product Name: {productName}\nPrice: {priceValue:C}\nImage Path: {imagePath}", "Product Information");
             this.Close();
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Delete button clicked!");
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            // Simply close the window without saving
             this.Close();
         }
 
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
-            // Close the window
             this.Close();
         }
     }

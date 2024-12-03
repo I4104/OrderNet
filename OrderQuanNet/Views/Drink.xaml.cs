@@ -77,18 +77,18 @@ namespace OrderQuanNet.Views
         {
             Button button = (Button)sender;
 
-            Detail detailWindow = new Detail(int.Parse(button.Tag.ToString()));
+            components.popup.Detail detailWindow = new components.popup.Detail(int.Parse(button.Tag.ToString()));
             detailWindow.ShowDialog();
         }
 
         private void EditPopup(object sender, RoutedEventArgs e)
         {
-            EditPopup editWindow = new EditPopup();
+            components.popup.EditPopup editWindow = new components.popup.EditPopup();
             editWindow.ShowDialog();
         }
         private void Add(object sender, RoutedEventArgs e)
         {
-            Add addWindow = new Add();
+            components.popup.Add addWindow = new components.popup.Add();
             addWindow.ShowDialog();
         }
     }
