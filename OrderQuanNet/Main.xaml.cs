@@ -106,7 +106,19 @@ namespace OrderQuanNet
             OrderTab.Foreground = HistoryTab.Foreground = new SolidColorBrush(Colors.Black);
             tab.Foreground = new SolidColorBrush(Colors.Red);
         }
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+            if (result == MessageBoxResult.Yes)
+            {
+                Window parentWindow = Window.GetWindow(this);
+                if (parentWindow != null)
+                {
+                    parentWindow.Close();
+                }
+            }
+        }
         private void ReloadLayouts(object sender, EventArgs e)
         {
             Sidebar.Height = this.ActualHeight - 50;

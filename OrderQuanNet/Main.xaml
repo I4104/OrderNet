@@ -55,6 +55,7 @@
                 </Border>
                 <Border x:Name="Menu" CornerRadius="10" Grid.Row="1" Background="White" Padding="15, 10, 5, 10" Margin="0, 10, 0, 0">
                     <StackPanel>
+                        
                         <TextBlock FontSize="12" FontWeight="Bold" Foreground="DimGray">CỬA HÀNG TIỆN LỢI</TextBlock>
 
                         <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="FoodTab">
@@ -77,6 +78,13 @@
                                 <components:SidebarItems x:Name="AdminUserTabItem" ItemActive="false" ItemIcon="\Resources\Images\usermanagement.png" ItemName="Quản lý người dùng" />
                             </Button>
                         </StackPanel>
+                        <Button x:Name="LogoutButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,10,0,5" Click="LogoutButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="\Resources\Images\logout.png" Width="30" Height="30" Margin="0,0,5,0" />
+                                <TextBlock Text="Đăng xuất" FontSize="12" FontWeight="Bold"  VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+
                     </StackPanel>
                 </Border>
 

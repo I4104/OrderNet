@@ -13,7 +13,8 @@
             <Image Source="\Resources\Images\search.png" VerticalAlignment="Center" HorizontalAlignment="Left" />
             <TextBox x:Name="SearchBox" Width="340" Margin="30,0,0,0" VerticalAlignment="Center" 
                      Background="Transparent" BorderThickness="0" FontSize="14" Foreground="Gray" 
-                     Text="Search here..." />
+                     Text="Search here..."  GotFocus="SearchBox_GotFocus" 
+                     LostFocus="SearchBox_LostFocus"/>
         </Grid>
     </Border>
 </UserControl>
