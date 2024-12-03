@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace OrderQuanNet.Views
 {
@@ -20,7 +22,25 @@ namespace OrderQuanNet.Views
             this.BeginAnimation(UIElement.OpacityProperty, fadeIn);
         }
 
-
+        private void txtImagePath_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            try
+            {
+                string imageUrl = txtImagePath.Text;
+                if (!string.IsNullOrWhiteSpace(imageUrl))
+                {
+                    imgProduct.Source = new BitmapImage(new Uri(imageUrl, UriKind.Absolute));
+                }
+                else
+                {
+                    imgProduct.Source = null; // Xóa ảnh nếu URL trống
+                }
+            }
+            catch (Exception)
+            {
+                imgProduct.Source = null; // Trường hợp URL không hợp lệ
+            }
+        }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -38,12 +58,12 @@ namespace OrderQuanNet.Views
             // Validate if balance is a valid number
             if (!decimal.TryParse(Price, out decimal PriceValue))
             {
-                MessageBox.Show("Balance must be a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Price must be a valid number.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             // Confirmation message
-            MessageBox.Show($"Product Name: {productName}\nBalance: {PriceValue:C}\nImage Path: {imagePath}", "Product Information");
+            MessageBox.Show($"Product Name: {productName}\nPrice: {PriceValue:C}\nImage Path: {imagePath}", "Product Information");
 
             // Close the window after saving
             this.Close();
