@@ -71,14 +71,7 @@ namespace OrderQuanNet.Views
             }
             return null;
         }
-        private void Export(object sender, RoutedEventArgs e)
-        {
-            components.popup.Download downloadWindow = new components.popup.Download();
-            downloadWindow.ShowDialog();
-        }
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("reset");
-        }
+       
+       
     }
 }

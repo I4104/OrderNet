@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
+using System.Xml.Linq;
 
 namespace OrderQuanNet.Views.components.popup
 {
@@ -31,22 +32,32 @@ namespace OrderQuanNet.Views.components.popup
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            // Collect user inputs
             string userName = txtUserName.Text;
+            string Name = txtName.Text;
             string email = txtEmail.Text;
-            string password = txtPassword.Password;
             string balance = txtBalance.Text;
             string imagePath = txtImagePath.Text;
+            string role = cmbRoles.Text;
 
+            // Validation
             if (string.IsNullOrWhiteSpace(userName) ||
+                string.IsNullOrWhiteSpace(Name) ||
                 string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(balance) ||
-                string.IsNullOrWhiteSpace(imagePath))
+                string.IsNullOrWhiteSpace(imagePath) ||
+                string.IsNullOrWhiteSpace(role))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            MessageBox.Show($"Tên người dùng: {userName}\nEmail: {email}\nMật khẩu: {password}\nSố dư: {balance}\nĐường dẫn hình ảnh: {imagePath}", "Thông tin người dùng");
+
+            // Display collected information
+            MessageBox.Show(
+                $"Tên người dùng: {userName}\nTên:  {Name} \nEmail: {email}\nVai trò: {role}\nSố dư: {balance}\nĐường dẫn hình ảnh: {imagePath}",
+                "Thông tin người dùng");
+
+            // Close the window after creation
             this.Close();
         }
 

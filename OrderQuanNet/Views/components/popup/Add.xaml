@@ -9,7 +9,6 @@
         Loaded="Window_Loaded">
     <Border Background="White" BorderBrush="#E5E7EB" BorderThickness="1" Padding="20,0,20,20">
         <StackPanel>
-            <!-- Tiêu đề -->
             <TextBlock Text="Add Product" 
                        FontSize="20" 
                        FontWeight="Bold" 
@@ -17,7 +16,6 @@
                        Margin="0,0,0,20" 
                        HorizontalAlignment="Left" />
 
-            <!-- Tên sản phẩm -->
             <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                 <TextBlock Text="Product Name" 
                            FontSize="14" 
@@ -29,7 +27,6 @@
                 </Border>
             </StackPanel>
 
-            <!-- Giá sản phẩm -->
             <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                 <TextBlock Text="Price" 
                            FontSize="14" 
@@ -41,7 +38,6 @@
                 </Border>
             </StackPanel>
 
-            <!-- Hiển thị ảnh -->
             <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                 <TextBlock Text="Preview Image" 
                            FontSize="14" 
@@ -53,7 +49,6 @@
                 </Border>
             </StackPanel>
 
-            <!-- Đường dẫn ảnh -->
             <StackPanel Orientation="Vertical" Margin="0,0,0,10">
                 <TextBlock Text="Image URL" 
                            FontSize="14" 
@@ -69,8 +64,6 @@
                              TextChanged="txtImagePath_TextChanged" />
                 </Border>
             </StackPanel>
-
-            <!-- Nút điều khiển -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                 <Button Content="Cancel" 
                         Width="100" 

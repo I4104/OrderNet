@@ -57,6 +57,13 @@ namespace OrderQuanNet.Views
                 MessageBox.Show("Invalid product ID.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void Export(object sender, RoutedEventArgs e)
+        {
+            components.popup.Download downloadWindow = new components.popup.Download();
+            downloadWindow.ShowDialog();
+        }
+
         private void AddUserManager(object sender, RoutedEventArgs e)
         {
             AddUser addWindow = new AddUser("user");
