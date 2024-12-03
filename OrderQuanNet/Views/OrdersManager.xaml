@@ -27,12 +27,16 @@
                                 <ColumnDefinition Width="30" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="30" />
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.Column="0"  Height="30" Width=" 30" Source="\Resources\Images\usermanagement.png" Stretch="Fill" />
                             <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0">DANH SÁCH ĐƠN HÀNG</TextBlock>
                             <Button x:Name="ExportButton" Grid.Column="2" Height="30" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Export">
                                 <Image Source="\Resources\Images\download.png" Stretch="Fill" />
+                            </Button>
+                            <Button x:Name="ResetButton" Height="30" Grid.Column="3" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ResetButton_Click">
+                                <Image Source="\Resources\Images\reset.png" Stretch="Fill" />
                             </Button>
                         </Grid>
                     </StackPanel>

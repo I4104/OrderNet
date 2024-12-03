@@ -94,5 +94,11 @@ namespace OrderQuanNet.Views
             }
             return null;
         }
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            MessageBox.Show("reset");
+
+        }
     }
 }

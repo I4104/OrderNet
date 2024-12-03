@@ -91,5 +91,10 @@ namespace OrderQuanNet.Views
             components.popup.Add addWindow = new components.popup.Add();
             addWindow.ShowDialog();
         }
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("reset");
+
+        }
     }
 }

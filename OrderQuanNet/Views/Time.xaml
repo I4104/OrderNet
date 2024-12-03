@@ -22,13 +22,16 @@
                             <ColumnDefinition Width="30" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="\Resources\Images\time.png" Stretch="Fill" />
                         <TextBlock Grid.Column="1" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0">QUẦY THẺ CHƠI</TextBlock>
-                        <Button x:Name="AddButton" Height="30" Grid.Column="2" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Add">
+                        <Button x:Name="AddButton" Height="30" Grid.Column="2" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Add">
                             <Image Source="\Resources\Images\add.png" Stretch="Fill" />
                         </Button>
-                        
+                        <Button x:Name="ResetButton" Height="30" Grid.Column="3" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="ResetButton_Click">
+                            <Image Source="\Resources\Images\reset.png" Stretch="Fill" />
+                        </Button>
                     </Grid>
                 </StackPanel>
                 <ItemsControl Grid.Row="1" x:Name="TimeItemsControl">
