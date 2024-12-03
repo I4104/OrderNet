@@ -79,7 +79,6 @@ namespace OrderQuanNet.Views
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("reset");
-
         }
     }
 }

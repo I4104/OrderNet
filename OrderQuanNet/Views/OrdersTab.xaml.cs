@@ -56,7 +56,6 @@ namespace OrderQuanNet.Views
             var data = CartDataManager.cartItems;
             foreach (var item in data)
             {
-                OrdersService ordersService = new OrdersService();
                 OrdersModel order = new OrdersModel();
 
                 order.users_id = SessionManager.users.id;
@@ -65,8 +64,8 @@ namespace OrderQuanNet.Views
                 order.price = ProductDataManager.Products.Where(p => p.id == item.Key).FirstOrDefault().price.Value;
                 order.amount = item.Value;
                 order.status = "WAITING";
+                order.create();
 
-                ordersService.Insert(order);
                 CartDataManager.removeItem(item.Key);
                 _updateCart?.Invoke();
             }

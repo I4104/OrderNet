@@ -89,7 +89,7 @@ namespace OrderQuanNet.Views.components
                         orders.status = "DONE";
                         break;
                 }
-                ordersService.Update(orders);
+                orders.save();
                 _updateCart?.Invoke();
             }
         }

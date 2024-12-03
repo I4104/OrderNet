@@ -1,4 +1,6 @@
-﻿namespace OrderQuanNet.Models
+﻿using OrderQuanNet.Services;
+
+namespace OrderQuanNet.Models
 {
     public class OrdersModel
     {
@@ -10,5 +12,24 @@
         public string? status { get; set; }
         public string? created_at { get; set; }
         public string? updated_at { get; set; }
+
+        public void create()
+        {
+            this.id = null;
+            OrdersService ordersService = new OrdersService();
+            ordersService.Insert(this);
+        }
+
+        public void save()
+        {
+            OrdersService ordersService = new OrdersService();
+            ordersService.Insert(this);
+        }
+
+        public void delete()
+        {
+            OrdersService ordersService = new OrdersService();
+            ordersService.Insert(this);
+        }
     }
 }

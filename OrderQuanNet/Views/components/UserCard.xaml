@@ -38,7 +38,7 @@
             </StackPanel>
             <StackPanel  Grid.Row="2" Orientation="Horizontal">
                 <TextBlock>Account Type: </TextBlock>
-                <TextBlock Text="{Binding UserType, RelativeSource={RelativeSource AncestorType=UserControl}}" Margin="10, 0, 0, 0"></TextBlock>
+                <TextBlock Text="{Binding UserType, RelativeSource={RelativeSource AncestorType=UserControl}}" Margin="5, 0, 0, 0"></TextBlock>
             </StackPanel>
         </Grid>
     </Border>

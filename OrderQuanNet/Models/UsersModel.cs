@@ -1,4 +1,6 @@
-﻿namespace OrderQuanNet.Models
+﻿using OrderQuanNet.Services;
+
+namespace OrderQuanNet.Models
 {
     public class UsersModel
     {
@@ -8,5 +10,24 @@
         public string? password { get; set; }
         public string? type { get; set; }
         public int? balance { get; set; }
+
+        public void create()
+        {
+            this.id = null;
+            UsersService usersService = new UsersService();
+            usersService.Insert(this);
+        }
+
+        public void save()
+        {
+            UsersService usersService = new UsersService();
+            usersService.Insert(this);
+        }
+
+        public void delete()
+        {
+            UsersService usersService = new UsersService();
+            usersService.Insert(this);
+        }
     }
 }

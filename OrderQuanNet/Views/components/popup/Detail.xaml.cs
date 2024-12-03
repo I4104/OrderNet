@@ -36,7 +36,6 @@ namespace OrderQuanNet.Views.components.popup
             return allProducts.Where(p => p.id == id).FirstOrDefault();
         }
 
-
         private void AddToCart(object sender, RoutedEventArgs e)
         {
             int amouunt = int.Parse(QuantityTextBox.Text);
