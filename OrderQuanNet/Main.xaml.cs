@@ -10,7 +10,10 @@ namespace OrderQuanNet
 {
     public partial class Main : Window
     {
+        public static Double LocationSaver = 0;
+
         public Action UpdateCartAction { get; set; }
+
         public static string HashMD5(string input)
         {
             using (MD5 md5 = MD5.Create())

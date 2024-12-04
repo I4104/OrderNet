@@ -1,14 +1,38 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
-using System.Xml.Linq;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
+using OrderQuanNet.Services;
 
 namespace OrderQuanNet.Views.components.popup
 {
     public partial class EditPopupUser : Window
     {
-        public EditPopupUser(int v)
+        private Action _updateCart;
+
+        private UsersModel user;
+
+        public EditPopupUser(int id)
         {
             InitializeComponent();
+
+            UsersService usersService = new UsersService();
+            user = usersService.SelectById(id);
+
+            if (user == null)
+            {
+                MessageBox.Show("Tài khoản này không tồn tại!");
+                _updateCart?.Invoke();
+                this.Close();
+                return;
+            }
+            _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
+
+            txtBalance.Text = user.balance.ToString();
+            txtName.Text = user.name;
+            txtUserName.Text = user.username;
+            txtType.Text = user.type;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -23,8 +47,6 @@ namespace OrderQuanNet.Views.components.popup
             this.BeginAnimation(OpacityProperty, fadeIn);
         }
 
-
-
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -32,38 +54,49 @@ namespace OrderQuanNet.Views.components.popup
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            // Collect user inputs
             string userName = txtUserName.Text;
             string Name = txtName.Text;
-            string email = txtEmail.Text;
             string balance = txtBalance.Text;
-            string imagePath = txtImagePath.Text;
-            string role = cmbRoles.Text;
+            string type = txtType.Text;
 
-            // Validation
             if (string.IsNullOrWhiteSpace(userName) ||
                 string.IsNullOrWhiteSpace(Name) ||
-                string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(balance) ||
-                string.IsNullOrWhiteSpace(imagePath) ||
-                string.IsNullOrWhiteSpace(role))
+                string.IsNullOrWhiteSpace(type))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Display collected information
-            MessageBox.Show(
-                $"Tên người dùng: {userName}\nTên:  {Name} \nEmail: {email}\nVai trò: {role}\nSố dư: {balance}\nĐường dẫn hình ảnh: {imagePath}",
-                "Thông tin người dùng");
-
-            // Close the window after creation
+            user.balance = int.Parse(balance);
+            user.name = Name;
+            user.username = userName;
+            user.type = type;
+            user.save();
+            _updateCart?.Invoke();
+            UserDataManager.UpdateUser(user);
+            MessageBox.Show("Đã cập nhật thông tin người dùng!");
             this.Close();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Delete button clicked!");
+            MessageBoxResult messageBox = MessageBox.Show("Xóa người dùng " + user.name + " ?", "Xóa người dùng", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if (messageBox != MessageBoxResult.Yes)
+            {
+                try
+                {
+                    user.delete();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Vui lòng xóa các dữ liệu liên quan trước khi xóa users này!");
+                }
+                MessageBox.Show("Đã xóa người dùng! " + user.name);
+                UserDataManager.LoadUsers();
+                _updateCart?.Invoke();
+                this.Close();
+            }
         }
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {

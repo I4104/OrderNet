@@ -13,6 +13,11 @@ namespace OrderQuanNet.Views
         {
             InitializeComponent();
             loadOrders();
+            OrdersPanel.ScrollToVerticalOffset(Main.LocationSaver);
+        }
+        private void OrdersPanel_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            Main.LocationSaver = OrdersPanel.VerticalOffset;
         }
 
         private void loadOrders()
@@ -71,7 +76,6 @@ namespace OrderQuanNet.Views
             }
             return null;
         }
-       
-       
+
     }
 }

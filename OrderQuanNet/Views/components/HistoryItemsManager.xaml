@@ -14,7 +14,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Image x:Name="ItemImage" Width="90" Height="90" Grid.Column="0" Stretch="Fill" Source="{Binding Path=ItemImage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="95"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image x:Name="ItemImage" Grid.Row="0" Width="90" Height="90" Stretch="Fill" Margin="0, 5, 0, 0" Source="{Binding Path=ItemImage, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
+                <TextBlock Text="{Binding Path=Amount, RelativeSource={RelativeSource AncestorType=UserControl}}" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10" Foreground="Black" FontWeight="Bold" />
+            </Grid>
 
             <Grid Grid.Column="1" Margin="10,0,0,0">
                 <Grid.RowDefinitions>
@@ -23,17 +30,14 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="20"/>
-
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Binding Path=ItemName, RelativeSource={RelativeSource AncestorType=UserControl}}" Grid.Row="0" FontSize="14" FontWeight="Bold" Foreground="Red" Margin="0,5,0,4" TextWrapping="Wrap"/>
-                <TextBlock Text="{Binding Path=ItemPrice, RelativeSource={RelativeSource AncestorType=UserControl}}" Grid.Row="1" FontSize="12" Foreground="black" FontWeight="Bold" Margin="0,0,0,6"/>
-                <TextBlock Text="{Binding Path=Amount, RelativeSource={RelativeSource AncestorType=UserControl}}" Grid.Row="2" VerticalAlignment="Center" FontSize="10" Foreground="Black" FontWeight="Bold" />
+                <TextBlock Text="{Binding Path=ItemName, RelativeSource={RelativeSource AncestorType=UserControl}}" Grid.Row="0" FontSize="12" VerticalAlignment="Center" FontWeight="Bold" Foreground="Red" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding Path=ItemPrice, RelativeSource={RelativeSource AncestorType=UserControl}}" Grid.Row="1" FontSize="10" VerticalAlignment="Center" Foreground="black" FontWeight="Bold" />
+                <TextBlock x:Name="Username" VerticalAlignment="center" FontSize="10" Grid.Row="2" Foreground="Firebrick" FontWeight="Bold" />
                 <TextBlock Text="{Binding Path=Status, RelativeSource={RelativeSource AncestorType=UserControl}}" Grid.Row="3" VerticalAlignment="Center" FontSize="10" FontWeight="Bold" />
 
-                <Button x:Name="ProccessBtn" Tag="{Binding Path=ItemId, RelativeSource={RelativeSource AncestorType=UserControl}}" Click="ChangeOrdersStatus"  Grid.Row="4" BorderThickness="0" VerticalAlignment="Center" Width="70" Height="25" FontSize="12" Foreground="White" HorizontalAlignment="Right" Margin="5,0,5,0">
-                    
-                </Button>
+                <Button x:Name="ProccessBtn" Tag="{Binding Path=ItemId, RelativeSource={RelativeSource AncestorType=UserControl}}" Click="ChangeOrdersStatus"  Grid.Row="4" BorderThickness="0" VerticalAlignment="Center" Width="70" Height="25" FontSize="12" Foreground="White" HorizontalAlignment="Right" Margin="5,0,5,0" />
             </Grid>
         </Grid>
     </Border>

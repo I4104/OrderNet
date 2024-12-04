@@ -15,14 +15,21 @@ namespace OrderQuanNet.Views
             InitializeComponent();
             LoadTimeProducts();
             _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
+            TimePanel.ScrollToVerticalOffset(Main.LocationSaver);
         }
 
         private void LoadTimeProducts()
         {
             if (ProductDataManager.Products.Count == 0) ProductDataManager.LoadProducts();
             var allProducts = ProductDataManager.Products;
+            if (SearchBox.Text != "" && SearchBox.Text != null) allProducts = allProducts.Where(p => p.name.ToLower().Contains(SearchBox.Text.ToLower())).ToList();
             var timeProducts = allProducts.Where(p => p.type == "time");
             TimeItemsControl.ItemsSource = timeProducts.ToList();
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LoadTimeProducts();
         }
 
         private void ToggleAddButtonVisibility()
@@ -38,6 +45,10 @@ namespace OrderQuanNet.Views
                 ResetButton.Visibility = Visibility.Visible;
             }
 
+        }
+        private void TimePanel_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            Main.LocationSaver = TimePanel.VerticalOffset;
         }
 
         private void Add(object sender, RoutedEventArgs e)
@@ -86,6 +97,5 @@ namespace OrderQuanNet.Views
             }
             return null;
         }
-        
     }
 }

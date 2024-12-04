@@ -15,16 +15,28 @@ namespace OrderQuanNet.Views
             InitializeComponent();
             LoadFoodProducts();
             _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
+            FoodPanel.ScrollToVerticalOffset(Main.LocationSaver);
+        }
+
+        private void FoodPanel_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            Main.LocationSaver = FoodPanel.VerticalOffset;
         }
 
         private void LoadFoodProducts()
         {
             if (ProductDataManager.Products.Count == 0) ProductDataManager.LoadProducts();
             var allProducts = ProductDataManager.Products;
+            if (SearchBox.Text != "" && SearchBox.Text != null) allProducts = allProducts.Where(p => p.name.ToLower().Contains(SearchBox.Text.ToLower())).ToList();
             var foodProducts = allProducts.Where(p => p.type == "food");
             FoodItemsControl.ItemsSource = foodProducts.ToList();
 
             FoodTitle.Text = "CỬA HÀNG ĐỒ ĂN: " + foodProducts.Count();
+        }
+
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LoadFoodProducts();
         }
 
         private void Add(object sender, RoutedEventArgs e)
@@ -73,7 +85,7 @@ namespace OrderQuanNet.Views
                 uniformGrid.InvalidateMeasure();
             }
         }
-        
+
 
 
         // Code này để tìm UniformGrid bên trong ItemSource.
@@ -96,5 +108,6 @@ namespace OrderQuanNet.Views
             MessageBox.Show("reset");
 
         }
+
     }
 }

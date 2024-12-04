@@ -6,11 +6,11 @@ namespace OrderQuanNet.Services
     {
         private readonly Database<ProductsModel> _database;
         public ProductsService() { _database = new Database<ProductsModel>("Products"); }
-        
+
         public bool Insert(ProductsModel product) { return _database.Insert(product); }
         public bool Update(ProductsModel product) { return _database.Update(product); }
         public bool Delete(ProductsModel product) { return _database.Delete(product); }
-        
+
         public ProductsModel Select(ProductsModel product)
         {
             using var reader = _database.Select(product);

@@ -38,6 +38,11 @@ namespace OrderQuanNet.Views.components.popup
 
         private void AddToCart(object sender, RoutedEventArgs e)
         {
+            if (CartDataManager.getTotalItems() >= 10)
+            {
+                MessageBox.Show("Bạn chỉ có thể đặt tối đa 10 sản phẩm cùng lúc!");
+                return;
+            }
             int amouunt = int.Parse(QuantityTextBox.Text);
             CartDataManager.addItem((int)product.id, amouunt);
             MessageBox.Show("Đã thêm vào giỏ hàng!");

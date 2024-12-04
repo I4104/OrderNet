@@ -21,7 +21,9 @@ namespace OrderQuanNet.Services
                 {
                     AddParameters(command, item);
                     connection.Open();
-                    return command.ExecuteNonQuery() > 0;
+                    var result = command.ExecuteNonQuery() > 0;
+                    connection.Close();
+                    return result;
                 }
             }
         }
@@ -37,7 +39,9 @@ namespace OrderQuanNet.Services
                 {
                     AddParameters(command, item);
                     connection.Open();
-                    return command.ExecuteNonQuery() > 0;
+                    var result = command.ExecuteNonQuery() > 0;
+                    connection.Close();
+                    return result;
                 }
             }
         }
@@ -52,7 +56,9 @@ namespace OrderQuanNet.Services
                 {
                     AddParameters(command, item);
                     connection.Open();
-                    return command.ExecuteNonQuery() > 0;
+                    var result = command.ExecuteNonQuery() > 0;
+                    connection.Close();
+                    return result;
                 }
             }
         }
@@ -68,8 +74,9 @@ namespace OrderQuanNet.Services
 
             command.CommandText = query;
             connection.Open();
+            var reader = command.ExecuteReader();
 
-            return command.ExecuteReader();
+            return reader;
         }
 
         public SqlDataReader SelectById(int id)
@@ -80,8 +87,9 @@ namespace OrderQuanNet.Services
             var command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@id", id);
             connection.Open();
+            var reader = command.ExecuteReader();
 
-            return command.ExecuteReader();
+            return reader;
         }
 
         public SqlDataReader SelectAll(T? where = null)
@@ -99,8 +107,9 @@ namespace OrderQuanNet.Services
             if (where != null) AddParameters(command, where);
 
             connection.Open();
+            var reader = command.ExecuteReader();
 
-            return command.ExecuteReader();
+            return reader;
         }
 
         private IEnumerable<string> CreateParameters(T item, bool isParameter = false, bool excludeId = false)

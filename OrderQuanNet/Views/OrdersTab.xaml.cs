@@ -4,7 +4,6 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using OrderQuanNet.DataManager;
 using OrderQuanNet.Models;
-using OrderQuanNet.Services;
 
 namespace OrderQuanNet.Views
 {

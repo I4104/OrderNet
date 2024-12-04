@@ -26,9 +26,17 @@
                             <ColumnDefinition Width="30" />
                             <ColumnDefinition Width="30" />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="\Resources\Images\UserManagermanagement.png" Stretch="Fill" />
+                        <Image Grid.Column="0" Source="\Resources\Images\usermanagermanagement.png" Stretch="Fill" />
                         <TextBlock Grid.Column="1" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0">QUẦY KHÁCH</TextBlock>
-                        <component:SearchForm Grid.Column="2" VerticalAlignment="Center" Width="300" HorizontalAlignment="Left"  Padding="0,0,20,0" />
+
+                        <Border Grid.Column="2" CornerRadius="15" Height="29" BorderThickness="0.5" BorderBrush="Black" Background="White" Padding="10, 5" HorizontalAlignment="Center">
+                            <Grid>
+                                <Image Source="\Resources\Images\search.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBox x:Name="SearchBox" Width="240" Margin="30,0,0,0" VerticalAlignment="Center" 
+                                         Background="Transparent" BorderThickness="0" FontSize="14" Foreground="Gray" 
+                                         TextChanged="SearchBox_TextChanged" />
+                            </Grid>
+                        </Border>
                         <Button x:Name="AddButton" Height="30" Grid.Column="3" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="AddUserManager">
                             <Image Source="\Resources\Images\add.png" Stretch="Fill" />
                         </Button>
@@ -38,17 +46,19 @@
                     </Grid>
 
                 </StackPanel>
-                <UniformGrid Grid.Row="1" x:Name="UserManagerGrid" Columns="5" Margin="2" VerticalAlignment="Top">
-                    <Border CornerRadius="5" Height="180" BorderThickness="1" BorderBrush="gray"  Margin="10" Padding="5">
-                        <Button Background="Transparent" VerticalAlignment="Top" Click="EditPopupUserManager">
-                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <Image Source="\Resources\Images\man.png" Height="120" Margin="0, 0, 0, 10" Stretch="UniformToFill"/>
-                                <TextBlock Text="UserManager" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" Margin="2"/>
-                                <TextBlock Text=" Số Dư: 30.000 VND" HorizontalAlignment="Center" Margin="2" Foreground="#FF757575" FontSize="10"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
-                </UniformGrid>
+                <ItemsControl Grid.Row="1" x:Name="UsersItemsControl">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3" Margin="2" VerticalAlignment="Top" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <component:UserItemsManager UserId="{Binding id}" Balance="{Binding balance, StringFormat='Số dư: {0:N0}'}" FullName="{Binding name}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
         </ScrollViewer>
     </Border>

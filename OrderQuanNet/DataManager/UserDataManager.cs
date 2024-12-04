@@ -1,4 +1,5 @@
 ﻿using OrderQuanNet.Models;
+using OrderQuanNet.Services;
 
 namespace OrderQuanNet.DataManager
 {
@@ -10,6 +11,12 @@ namespace OrderQuanNet.DataManager
         {
             get { return _Users; }
             set { _Users = value; }
+        }
+
+        public static void LoadUsers()
+        {
+            UsersService usersService = new UsersService();
+            UserDataManager.Users = usersService.SelectAll();
         }
 
         public static void UpdateUser(UsersModel User)

@@ -21,13 +21,13 @@ namespace OrderQuanNet.Models
         public void save()
         {
             UsersService usersService = new UsersService();
-            usersService.Insert(this);
+            usersService.Update(this);
         }
 
         public void delete()
         {
             UsersService usersService = new UsersService();
-            usersService.Insert(this);
+            usersService.Delete(this);
         }
     }
 }

@@ -10,7 +10,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded">
     <Border CornerRadius="10" Background="White" Padding="10">
-        <ScrollViewer x:Name="DrinkPanel" Visibility="Visible" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,8">
+        <ScrollViewer x:Name="DrinkPanel" Visibility="Visible" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,8" ScrollChanged="DrinkPanel_ScrollChanged">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
@@ -28,7 +28,15 @@
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="\Resources\Images\drink.png" Stretch="Fill" />
                         <TextBlock x:Name="DrinkTitle" VerticalAlignment="Center" Grid.Column="1" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0"></TextBlock>
-                        <component:SearchForm Grid.Column="2" VerticalAlignment="Center" Width="300" HorizontalAlignment="Left"  Padding="0,0,20,0" />
+
+                        <Border Grid.Column="2" CornerRadius="15" Height="29" BorderThickness="0.5" BorderBrush="Black" Background="White" Padding="10, 5" HorizontalAlignment="Center">
+                            <Grid>
+                                <Image Source="\Resources\Images\search.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBox x:Name="SearchBox" Width="240" Margin="30,0,0,0" VerticalAlignment="Center" 
+                                    Background="Transparent" BorderThickness="0" FontSize="14" Foreground="Gray" 
+                                   TextChanged="SearchBox_TextChanged" />
+                            </Grid>
+                        </Border>
 
                         <Button x:Name="AddButton" Height="25" Width="25" Grid.Column="3" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Add">
                             <Image Source="\Resources\Images\add.png" Stretch="Fill" Width="25" />

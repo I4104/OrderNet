@@ -6,7 +6,7 @@ namespace OrderQuanNet.Services
     {
         private readonly Database<OrdersModel> _database;
         public OrdersService() { _database = new Database<OrdersModel>("Orders"); }
-        
+
         public bool Insert(OrdersModel order) { return _database.Insert(order); }
         public bool Update(OrdersModel order) { return _database.Update(order); }
         public bool Delete(OrdersModel order) { return _database.Delete(order); }

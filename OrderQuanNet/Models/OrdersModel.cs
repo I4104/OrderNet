@@ -23,13 +23,13 @@ namespace OrderQuanNet.Models
         public void save()
         {
             OrdersService ordersService = new OrdersService();
-            ordersService.Insert(this);
+            ordersService.Update(this);
         }
 
         public void delete()
         {
             OrdersService ordersService = new OrdersService();
-            ordersService.Insert(this);
+            ordersService.Delete(this);
         }
     }
 }

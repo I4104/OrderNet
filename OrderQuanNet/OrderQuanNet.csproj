@@ -17,7 +17,6 @@
       <None Remove="Resources\Images\logout.png" />
       <None Remove="Resources\Images\man.png" />
       <None Remove="Resources\Images\payment.png" />
-      <None Remove="Resources\Images\phoboquannet.png" />
       <None Remove="Resources\Images\reset.png" />
       <None Remove="Resources\Images\search.png" />
       <None Remove="Resources\Images\time.png" />
@@ -57,9 +56,6 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Resources\Images\payment.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
-      <Resource Include="Resources\Images\phoboquannet.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
       <Resource Include="Resources\Images\reset.png">

@@ -1,19 +1,22 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media.Animation;
+using OrderQuanNet.DataManager;
+using OrderQuanNet.Models;
 
 namespace OrderQuanNet.Views.components.popup
 {
     public partial class AddUser : Window
     {
+        private Action _update;
+
         public AddUser(string v)
         {
             InitializeComponent();
+            _update = ((Main)Application.Current.MainWindow).UpdateCartAction;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Animation for window fade-in
             var fadeIn = new DoubleAnimation
             {
                 From = 0,
@@ -25,44 +28,38 @@ namespace OrderQuanNet.Views.components.popup
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            // Close the window when cancel button is clicked
             this.Close();
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            // Collect user inputs
             string userName = txtUserName.Text;
             string Name = txtName.Text;
-            string email = txtEmail.Text;
             string balance = txtBalance.Text;
-            string imagePath = txtImagePath.Text;
-            string role = cmbRoles.Text;
+            string role = txtType.Text;
 
-            // Validation
             if (string.IsNullOrWhiteSpace(userName) ||
                 string.IsNullOrWhiteSpace(Name) ||
-                string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(balance) ||
-                string.IsNullOrWhiteSpace(imagePath) ||
                 string.IsNullOrWhiteSpace(role))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Display collected information
-            MessageBox.Show(
-                $"Tên người dùng: {userName}\nTên:  {Name} \nEmail: {email}\nVai trò: {role}\nSố dư: {balance}\nĐường dẫn hình ảnh: {imagePath}",
-                "Thông tin người dùng");
+            UsersModel users = new UsersModel();
+            users.balance = int.Parse(balance);
+            users.name = Name;
+            users.username = userName;
+            users.type = role;
+            users.password = Main.HashMD5(userName);
+            users.create();
 
-            // Close the window after creation
+            UserDataManager.LoadUsers();
+            MessageBox.Show("Đã cập nhật người dùng!");
+            _update?.Invoke();
+
             this.Close();
         }
-        private void ResetPassword_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
     }
 }

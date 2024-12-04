@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -17,18 +16,27 @@ namespace OrderQuanNet.Views
             InitializeComponent();
             LoadDrinkProducts();
             _updateCart = ((Main)Application.Current.MainWindow).UpdateCartAction;
+            DrinkPanel.ScrollToVerticalOffset(Main.LocationSaver);
+        }
+        private void DrinkPanel_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            Main.LocationSaver = DrinkPanel.VerticalOffset;
         }
 
         private void LoadDrinkProducts()
         {
             if (ProductDataManager.Products.Count == 0) ProductDataManager.LoadProducts();
             var allProducts = ProductDataManager.Products;
+            if (SearchBox.Text != "" && SearchBox.Text != null) allProducts = allProducts.Where(p => p.name.ToLower().Contains(SearchBox.Text.ToLower())).ToList();
             var drinkProducts = allProducts.Where(p => p.type == "drink");
             DrinkItemsControl.ItemsSource = drinkProducts.ToList();
 
             DrinkTitle.Text = "QUẦY NƯỚC: " + drinkProducts.Count();
         }
-
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LoadDrinkProducts();
+        }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -48,8 +56,6 @@ namespace OrderQuanNet.Views
                 AddButton.Visibility = Visibility.Visible;
                 ResetButton.Visibility = Visibility.Visible;
             }
-;
-
         }
 
         private void Add(object sender, RoutedEventArgs e)
@@ -63,7 +69,7 @@ namespace OrderQuanNet.Views
             ProductDataManager.LoadProducts();
             _updateCart?.Invoke();
         }
-        
+
         private void UpdateRows()
         {
             double itemWidth = 160;
@@ -89,7 +95,5 @@ namespace OrderQuanNet.Views
             }
             return null;
         }
-      
-       
     }
 }

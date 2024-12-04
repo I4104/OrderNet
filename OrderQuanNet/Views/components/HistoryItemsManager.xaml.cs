@@ -22,7 +22,7 @@ namespace OrderQuanNet.Views.components
             "Status", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty, OnStatusChanged));
 
         public static readonly DependencyProperty ItemIdProperty = DependencyProperty.Register(
-            "ItemId", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty));
+            "ItemId", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty, OnItemIdChanged));
 
         public static readonly DependencyProperty ItemNameProperty = DependencyProperty.Register(
             "ItemName", typeof(string), typeof(HistoryItemsManager), new PropertyMetadata(string.Empty));
@@ -91,6 +91,23 @@ namespace OrderQuanNet.Views.components
                 }
                 orders.save();
                 _updateCart?.Invoke();
+            }
+        }
+
+        private static void OnItemIdChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (HistoryItemsManager)d;
+            var id = int.Parse(e.NewValue as string);
+
+
+            OrdersService ordersService = new OrdersService();
+            OrdersModel orders = ordersService.SelectById(id);
+
+            if (orders != null)
+            {
+                UsersService usersService = new UsersService();
+                UsersModel users = usersService.SelectById((int)orders.users_id);
+                control.Username.Text = "By: " + users.name;
             }
         }
 

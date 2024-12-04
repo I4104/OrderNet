@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using OrderQuanNet.DataManager;
 using OrderQuanNet.Views.components.popup;
 
@@ -77,7 +66,7 @@ namespace OrderQuanNet.Views.components
             {
                 Detail detailWindow = new Detail(int.Parse(button.Tag.ToString()));
                 detailWindow.ShowDialog();
-            } 
+            }
             else
             {
                 EditPopup editWindow = new EditPopup(int.Parse(button.Tag.ToString()));

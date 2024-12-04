@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Text;
+using System.Windows;
 using System.Windows.Controls;
+using OrderQuanNet.DataManager;
 
 namespace OrderQuanNet.Views.components.popup
 {
@@ -8,6 +11,8 @@ namespace OrderQuanNet.Views.components.popup
         public Download()
         {
             InitializeComponent();
+            UserDataManager.LoadUsers();
+            ProductsDataGrid.ItemsSource = UserDataManager.Users;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -20,61 +25,37 @@ namespace OrderQuanNet.Views.components.popup
             };
             this.BeginAnimation(UIElement.OpacityProperty, fadeIn);
         }
-
-        private void ExportData()
+        private void ExportToCSV(object sender, RoutedEventArgs e)
         {
-            if (ExportFormatComboBox.SelectedItem is ComboBoxItem selectedItem && selectedItem.Content is string selectedFormat)
+            var users = UserDataManager.Users;
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
             {
-                switch (selectedFormat)
+                Filter = "CSV Files (*.csv)|*.csv",
+                FileName = "users_data.csv"        
+            };
+
+            bool? result = saveFileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                var filePath = saveFileDialog.FileName;
+                var csvContent = new StringBuilder();
+                csvContent.AppendLine("ID,Username,Name,Type,Balance");
+                foreach (var user in users)
                 {
-                    case "CSV":
-                        ExportToCSV();
-                        break;
-                    case "Excel":
-                        ExportToExcel();
-                        break;
-                    case "PDF":
-                        ExportToPDF();
-                        break;
-                    default:
-                        MessageBox.Show("Vui lòng chọn định dạng xuất!");
-                        break;
+                    csvContent.AppendLine($"{user.id},{user.username},{user.name},{user.type},{user.balance}");
                 }
+                File.WriteAllText(filePath, csvContent.ToString());
+                MessageBox.Show("Đã xuất dữ liệu ra CSV!");
+                this.Close();
+                return;
             }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn định dạng xuất!");
-            }
-        }
-
-        private static void ExportToCSV()
-        {
-            MessageBox.Show("Đã xuất dữ liệu ra CSV!");
-        }
-
-        private static void ExportToExcel()
-        {
-            MessageBox.Show("Đã xuất dữ liệu ra Excel!");
-        }
-
-        private static void ExportToPDF()
-        {
-            MessageBox.Show("Đã xuất dữ liệu ra PDF!");
-        }
-
-        private void CloseWindow_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            MessageBox.Show("Chưa chọn tệp để lưu.");
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void Export_Click(object sender, RoutedEventArgs e)
-        {
-            ExportData();
         }
     }
 }
