@@ -28,10 +28,10 @@
                         <Image Grid.Column="0" Source="\Resources\Images\food.png" Stretch="Fill" />
                         <TextBlock VerticalAlignment="Center" x:Name="FoodTitle" Grid.Column="1" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" />
                         <component:SearchForm Grid.Column="2" VerticalAlignment="Center" Width="300" HorizontalAlignment="Left"  Padding="0,0,20,0" />
-                        <Button x:Name="AddButton" Height="30" Grid.Column="3" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Add">
+                        <Button x:Name="AddButton" Height="25" Width="25" Grid.Column="3" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Add">
                             <Image Source="\Resources\Images\add.png" Stretch="Fill" />
                         </Button>
-                        <Button x:Name="ResetButton" Height="30" Grid.Column="4" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Reset">
+                        <Button x:Name="ResetButton" Height="25" Width="25" Grid.Column="4" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Reset">
                             <Image Source="\Resources\Images\reset.png" Stretch="Fill" />
                         </Button>
                     </Grid>

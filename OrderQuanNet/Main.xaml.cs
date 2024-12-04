@@ -32,7 +32,11 @@ namespace OrderQuanNet
         public Main()
         {
             InitializeComponent();
-
+            SetInitialContent();
+            UpdateCartAction = () => { ReloadLayouts(null, null); };
+        }
+        private void SetInitialContent()
+        {
             if (SessionManager.users == null)
             {
                 this.Hide();
@@ -47,19 +51,22 @@ namespace OrderQuanNet
                 this.Show();
             }
 
-            SetInitialContent();
-            UpdateCartAction = () => { ReloadLayouts(null, null); };
-        }
-        private void SetInitialContent()
-        {
-
-            if (SessionManager.users.type != "admin") ADMIN_SHOWING_MANAGEMENT.Visibility = Visibility.Hidden;
-
             UserCard.UserName = SessionManager.users.name;
             UserCard.UserType = SessionManager.users.type;
             this.WindowState = WindowState.Maximized;
             SwitchOrderOrHistory(OrderTab);
             ReloadLayouts(null, null);
+        }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                SessionManager.users = null;
+                SetInitialContent();
+            }
         }
 
         private void OrderToggle(object sender, EventArgs e) { SwitchRightBar(RightBarType.Orders); }
@@ -106,21 +113,24 @@ namespace OrderQuanNet
             OrderTab.Foreground = HistoryTab.Foreground = new SolidColorBrush(Colors.Black);
             tab.Foreground = new SolidColorBrush(Colors.Red);
         }
-        private void LogoutButton_Click(object sender, RoutedEventArgs e)
-        {
-            var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            if (result == MessageBoxResult.Yes)
-            {
-                Window parentWindow = Window.GetWindow(this);
-                if (parentWindow != null)
-                {
-                    parentWindow.Close();
-                }
-            }
-        }
         private void ReloadLayouts(object sender, EventArgs e)
         {
+            if (SessionManager.users.type != "admin")
+            {
+                ADMIN_SHOWING_MANAGEMENT.Visibility = Visibility.Hidden;
+                OrderAndHistory.Visibility = Visibility.Visible;
+                ContentManager.Width = this.ActualWidth - 275 * 2;
+            }
+            else
+            {
+                ADMIN_SHOWING_MANAGEMENT.Visibility = Visibility.Visible;
+                OrderAndHistory.Visibility = Visibility.Hidden;
+                Grid.SetColumnSpan(ContentManager, 2);
+                ContentManager.Width = this.ActualWidth - 275 - 20;
+            }
+
+
             Sidebar.Height = this.ActualHeight - 50;
             OrderAndHistory.Height = this.ActualHeight - 50;
 
@@ -129,7 +139,6 @@ namespace OrderQuanNet
 
             Menu.Height = Sidebar.Height - 175;
             ContentManager.Height = this.ActualHeight - 55;
-            ContentManager.Width = this.ActualWidth - 275 * 2;
 
             switch (currentRightBar)
             {

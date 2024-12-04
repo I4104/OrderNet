@@ -30,10 +30,10 @@
                         <TextBlock x:Name="DrinkTitle" VerticalAlignment="Center" Grid.Column="1" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0"></TextBlock>
                         <component:SearchForm Grid.Column="2" VerticalAlignment="Center" Width="300" HorizontalAlignment="Left"  Padding="0,0,20,0" />
 
-                        <Button x:Name="AddButton" Height="30" Grid.Column="3" Background="White" HorizontalAlignment="Left"  Padding="0,0,10,0" VerticalAlignment="Center" Click="Add">
-                            <Image Source="\Resources\Images\add.png" Stretch="Fill" />
+                        <Button x:Name="AddButton" Height="25" Width="25" Grid.Column="3" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Click="Add">
+                            <Image Source="\Resources\Images\add.png" Stretch="Fill" Width="25" />
                         </Button>
-                        <Button x:Name="ResetButton" Height="30" Grid.Column="4" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Reset">
+                        <Button x:Name="ResetButton" Height="25" Width="25" Grid.Column="4" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Reset">
                             <Image Source="\Resources\Images\reset.png" Stretch="Fill" />
                         </Button>
                     </Grid>

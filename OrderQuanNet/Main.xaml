@@ -31,7 +31,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="265"/>
             <ColumnDefinition Width="*"/>
@@ -54,38 +54,42 @@
                     <components:UserCard x:Name="UserCard" />
                 </Border>
                 <Border x:Name="Menu" CornerRadius="10" Grid.Row="1" Background="White" Padding="15, 10, 5, 10" Margin="0, 10, 0, 0">
-                    <StackPanel>
-                        
-                        <TextBlock FontSize="12" FontWeight="Bold" Foreground="DimGray">CỬA HÀNG TIỆN LỢI</TextBlock>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <TextBlock FontSize="12" FontWeight="Bold" Foreground="DimGray">CỬA HÀNG TIỆN LỢI</TextBlock>
 
-                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="FoodTab">
-                            <components:SidebarItems x:Name="FoodTabItem" ItemActive="true" ItemIcon="\Resources\Images\food.png" ItemName="Đồ ăn" />
-                        </Button>
-                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="DrinkTab">
-                            <components:SidebarItems x:Name="DrinkTabItem" ItemActive="false" ItemIcon="\Resources\Images\drink.png" ItemName="Đồ uống" />
-                        </Button>
-                        <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="TimeTab">
-                            <components:SidebarItems x:Name="TimeTabItem" ItemActive="false" ItemIcon="\Resources\Images\time.png" ItemName="Giờ chơi" />
-                        </Button>
-
-                        <StackPanel x:Name="ADMIN_SHOWING_MANAGEMENT">
-                            <TextBlock x:Name="ManagementText" FontSize="12" Margin="0, 10, 0, 0" FontWeight="Bold" Foreground="DimGray">QUẢN LÝ</TextBlock>
-                            <Button x:Name="AdminOrderButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="OrdersManagerTab">
-                                <components:SidebarItems x:Name="AdminOrderTabItem" ItemActive="false" ItemIcon="\Resources\Images\orders.png" ItemName="Đơn hàng" />
+                            <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="FoodTab">
+                                <components:SidebarItems x:Name="FoodTabItem" ItemActive="true" ItemIcon="\Resources\Images\food.png" ItemName="Đồ ăn" />
+                            </Button>
+                            <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="DrinkTab">
+                                <components:SidebarItems x:Name="DrinkTabItem" ItemActive="false" ItemIcon="\Resources\Images\drink.png" ItemName="Đồ uống" />
+                            </Button>
+                            <Button Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="TimeTab">
+                                <components:SidebarItems x:Name="TimeTabItem" ItemActive="false" ItemIcon="\Resources\Images\time.png" ItemName="Giờ chơi" />
                             </Button>
 
-                            <Button x:Name="AdminUserButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="UserManagerTab">
-                                <components:SidebarItems x:Name="AdminUserTabItem" ItemActive="false" ItemIcon="\Resources\Images\usermanagement.png" ItemName="Quản lý người dùng" />
-                            </Button>
+                            <StackPanel x:Name="ADMIN_SHOWING_MANAGEMENT">
+                                <TextBlock x:Name="ManagementText" FontSize="12" Margin="0, 10, 0, 0" FontWeight="Bold" Foreground="DimGray">QUẢN LÝ</TextBlock>
+                                <Button x:Name="AdminOrderButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="OrdersManagerTab">
+                                    <components:SidebarItems x:Name="AdminOrderTabItem" ItemActive="false" ItemIcon="\Resources\Images\orders.png" ItemName="Đơn hàng" />
+                                </Button>
+
+                                <Button x:Name="AdminUserButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5, 10, 0, 5" Click="UserManagerTab">
+                                    <components:SidebarItems x:Name="AdminUserTabItem" ItemActive="false" ItemIcon="\Resources\Images\usermanagement.png" ItemName="Quản lý người dùng" />
+                                </Button>
+                            </StackPanel>
                         </StackPanel>
-                        <Button x:Name="LogoutButton" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,10,0,5" Click="LogoutButton_Click">
+                        <Button Grid.Row="1" Background="Transparent" VerticalAlignment="top" HorizontalAlignment="Left" Margin="5,10,0,5" Click="Logout">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="\Resources\Images\logout.png" Width="30" Height="30" Margin="0,0,5,0" />
                                 <TextBlock Text="Đăng xuất" FontSize="12" FontWeight="Bold"  VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
-
-                    </StackPanel>
+                    </Grid>
                 </Border>
 
             </Grid>
