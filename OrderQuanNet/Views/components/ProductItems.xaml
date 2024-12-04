@@ -10,7 +10,7 @@
     <Border CornerRadius="5" Height="180" BorderThickness="1" BorderBrush="gray" Margin="10" Padding="5">
         <Button Background="Transparent" VerticalAlignment="Top" Click="ItemClicked" Tag="{Binding Path=ItemId, RelativeSource={RelativeSource AncestorType=UserControl}}">
             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Image x:Name="ImageSource" Source="{Binding Path=ItemImage, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="120" Margin="0, 0, 0, 10" Stretch="UniformToFill"/>
+                <Image x:Name="ImageSource" Source="{Binding Path=ItemImage, RelativeSource={RelativeSource AncestorType=UserControl}}" Height="120" Margin="0, 0, 0, 10" Stretch="Uniform"/>
                 <TextBlock Text="{Binding Path=ItemName, RelativeSource={RelativeSource AncestorType=UserControl}}" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center" Margin="2"/>
                 <TextBlock Text="{Binding Path=ItemPrice, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center" Margin="2" Foreground="#FF757575" FontSize="10"/>
             </StackPanel>

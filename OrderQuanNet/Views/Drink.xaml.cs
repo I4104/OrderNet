@@ -53,7 +53,7 @@ namespace OrderQuanNet.Views
             }
             else
             {
-                AddButton.Visibility = Visibility.Visible;
+                AddButton.Visibility = Visibility.Hidden;
                 ResetButton.Visibility = Visibility.Visible;
             }
         }

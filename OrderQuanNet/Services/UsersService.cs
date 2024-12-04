@@ -11,6 +11,16 @@ namespace OrderQuanNet.Services
         public bool Update(UsersModel user) { return _database.Update(user); }
         public bool Delete(UsersModel user) { return _database.Delete(user); }
 
+        public bool CheckOldPassword(int userId, string oldPassword)
+        {
+            UsersModel user = SelectById(userId);
+
+            if (user != null && user.password == oldPassword)
+            {
+                return true; 
+            }
+            return false; 
+        }
         public UsersModel Select(UsersModel user)
         {
             using var reader = _database.Select(user);

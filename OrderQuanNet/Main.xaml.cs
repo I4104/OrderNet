@@ -5,6 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using OrderQuanNet.DataManager;
 using OrderQuanNet.Views;
+using OrderQuanNet.Views.components.popup;
+
 
 namespace OrderQuanNet
 {
@@ -69,6 +71,16 @@ namespace OrderQuanNet
             {
                 SessionManager.users = null;
                 SetInitialContent();
+            }
+        }
+        private void ResetPassword_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn đổi mật  khẩu  không ?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                var resetPasswordWindow = new Views.components.popup.ResetPassword();
+                resetPasswordWindow.ShowDialog();
             }
         }
 

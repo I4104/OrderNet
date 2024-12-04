@@ -24,7 +24,7 @@
 
             <StackPanel Grid.Row="1" Margin="10">
                 <Border CornerRadius="5" Height="120" Margin="0,0,0,10" BorderThickness="1" BorderBrush="Gray">
-                    <Image x:Name="imgProduct" Stretch="UniformToFill" />
+                    <Image x:Name="imgProduct" Stretch="Uniform" />
                 </Border>
 
                 <StackPanel Orientation="Vertical" Margin="0,0,0,10">
