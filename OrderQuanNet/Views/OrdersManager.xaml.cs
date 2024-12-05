@@ -4,6 +4,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using OrderQuanNet.DataManager;
 using OrderQuanNet.Models;
+using OrderQuanNet.Views.components.popup;
 
 namespace OrderQuanNet.Views
 {
@@ -76,6 +77,10 @@ namespace OrderQuanNet.Views
             }
             return null;
         }
-
+        private void Bill_Click(object sender, RoutedEventArgs e)
+        {
+            Bill billWindow = new Bill();
+            billWindow.ShowDialog();
+        }
     }
 }

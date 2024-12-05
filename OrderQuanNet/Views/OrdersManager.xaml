@@ -26,10 +26,13 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="30" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0"  Height="30" Width=" 30" Source="\Resources\Images\usermanagement.png" Stretch="Fill" />
+                            <Image Grid.Column="0"  Height="30" Width=" 30" Source="\Resources\Images\orders.png" Stretch="Fill" />
                             <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="10, 0, 0, 0" FontSize="15" FontWeight="Bold" Foreground="DimGray" Grid.Row="0">DANH SÁCH ĐƠN HÀNG</TextBlock>
+                            <Button  Height="30" Width="30" Grid.Column="4" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Bill_Click" >
+                                <Image Source="\Resources\Images\invoice.png" Stretch="Fill" />
+                            </Button>
                         </Grid>
                     </StackPanel>
 
