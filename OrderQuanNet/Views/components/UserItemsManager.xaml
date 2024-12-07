@@ -14,5 +14,6 @@
                 <TextBlock Text="{Binding Path=Balance, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center" Margin="2" Foreground="#FF757575" FontSize="10"/>
             </StackPanel>
         </Button>
+        
     </Border>
 </UserControl>

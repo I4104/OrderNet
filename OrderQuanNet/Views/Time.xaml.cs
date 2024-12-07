@@ -25,6 +25,8 @@ namespace OrderQuanNet.Views
             if (SearchBox.Text != "" && SearchBox.Text != null) allProducts = allProducts.Where(p => p.name.ToLower().Contains(SearchBox.Text.ToLower())).ToList();
             var timeProducts = allProducts.Where(p => p.type == "time");
             TimeItemsControl.ItemsSource = timeProducts.ToList();
+
+            TimeTitle.Text = "QUẦY NƯỚC: " + timeProducts.Count();
         }
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
