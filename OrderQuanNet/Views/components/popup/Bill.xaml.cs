@@ -47,13 +47,13 @@ namespace OrderQuanNet.Views.components.popup
             _usersService = new UsersService();
             _ordersService = new OrdersService();
             _productsService = new ProductsService();
+
             Users = new ObservableCollection<UsersModel>(_usersService.SelectAll().Where(user => user.type == "member"));
             CurrentDate = DateTime.Now.ToString("dd/MM/yyyy");
             GenerateInvoiceCode();
             SelectedUserOrders = new ObservableCollection<OrderViewModel>();
             DataContext = this;  
         }
-
         private void ComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (SelectedUser != null)
@@ -74,7 +74,14 @@ namespace OrderQuanNet.Views.components.popup
         }
         private void LoadUserOrders()
         {
-            var orders = _ordersService.SelectAll(new OrdersModel { users_id = SelectedUser.id });
+            var today = DateTime.Now.Date;
+            var orders = _ordersService
+                .SelectAll(new OrdersModel { users_id = SelectedUser.id })
+                .Where(order =>
+                    order.status == "DONE" &&
+                    DateTime.TryParse(order.updated_at, out var updatedDate) &&
+                    updatedDate.Date == today); 
+
             SelectedUserOrders.Clear();
 
             foreach (var order in orders)
@@ -92,6 +99,7 @@ namespace OrderQuanNet.Views.components.popup
             CalculateGrandTotal();
             OnPropertyChanged(nameof(SelectedUserOrders));
         }
+
         private string GetProductNameById(int productId)
         {
             var product = _productsService.SelectById(productId);

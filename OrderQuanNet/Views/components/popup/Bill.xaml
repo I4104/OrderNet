@@ -57,23 +57,25 @@
                      Padding="5" 
                      BorderThickness="0" />
 
-            <TextBlock Text="Ngày:" FontSize="14" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Foreground="#444" Margin="0,10,0,0"/>
+            <TextBlock Text="Ngày:" FontSize="14" FontWeight="SemiBold" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"  Foreground="#444" Margin="0,0,0,0"/>
             <TextBox Text="{Binding CurrentDate}" 
                      Grid.Row="1" Grid.Column="1" 
                      Margin="5" 
                      IsReadOnly="True" 
                      Background="White" 
-                     Padding="5" 
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     Padding="0" 
                      BorderThickness="0" />
 
         </Grid>
 
-        <DataGrid Grid.Row="3" ItemsSource="{Binding SelectedUserOrders}" AutoGenerateColumns="False" Margin="0,0,20,20" Background="White" BorderBrush="#DDDDDD" GridLinesVisibility="Vertical" CanUserAddRows="False" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header="Product Name" Binding="{Binding ProductName}" />
-                <DataGridTextColumn Width="*" Header="Quantity" Binding="{Binding Quantity}" />
+        <DataGrid Grid.Row="3" ItemsSource="{Binding SelectedUserOrders}" AutoGenerateColumns="False" Margin="0,0,20,20" Background="White" BorderBrush="White" GridLinesVisibility="Vertical" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns >
+                <DataGridTextColumn  Width="*" Header="Sản Phẩm" Binding="{Binding ProductName}" />
+                <DataGridTextColumn Width="0.8*" Header="Số Lượng" Binding="{Binding Quantity}" />
 
-                <DataGridTemplateColumn Width="*" Header="Price">
+                <DataGridTemplateColumn Width="*" Header="Đơn Giá">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -84,7 +86,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="*" Header="Total">
+                <DataGridTemplateColumn Width="*" Header="Thành Tiền">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -102,7 +104,7 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Grand Total:" FontSize="16" FontWeight="Bold" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Foreground="#555" Margin="10"/>
+            <TextBlock Text="Tổng Hóa Đơn:" FontSize="16" FontWeight="Bold" Grid.Column="0" TextAlignment="Right" VerticalAlignment="Center" Foreground="#555" Margin="10"/>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="{Binding GrandTotal, StringFormat='N0' }" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" Foreground="#D32F2F"/>
