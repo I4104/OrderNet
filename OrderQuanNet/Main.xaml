@@ -91,7 +91,7 @@
                             <Button  Grid.Row="0" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,10,0,5"  Click="ResetPassword_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="\Resources\Images\padlock.png" Width="30" Height="30" Margin="0,0,5,0" />
-                                    <TextBlock Text="Reset Password" FontSize="12" FontWeight="Bold"  VerticalAlignment="Center" />
+                                    <TextBlock Text="Đổi mật khẩu" FontSize="12" FontWeight="Bold"  VerticalAlignment="Center" />
                                 </StackPanel>
                             </Button>
                             <Button Grid.Row="1" Background="Transparent" VerticalAlignment="top" HorizontalAlignment="Left" Margin="5,10,0,5" Click="Logout">

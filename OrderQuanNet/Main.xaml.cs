@@ -66,9 +66,10 @@ namespace OrderQuanNet
         private void Logout(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
             if (result == MessageBoxResult.Yes)
             {
+                currentRightBar = RightBarType.Orders;
+                currentTab = TabType.Food;
                 SessionManager.users = null;
                 SetInitialContent();
             }
@@ -79,7 +80,7 @@ namespace OrderQuanNet
 
             if (result == MessageBoxResult.Yes)
             {
-                var resetPasswordWindow = new Views.components.popup.ResetPassword();
+                var resetPasswordWindow = new ResetPassword();
                 resetPasswordWindow.ShowDialog();
             }
         }

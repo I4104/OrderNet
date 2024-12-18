@@ -18,29 +18,13 @@ namespace OrderQuanNet.Views.components.popup
             currentUser = SessionManager.users; 
         }
 
-        private string ComputeMD5Hash(string input)
-        {
-            using (MD5 md5 = MD5.Create()) 
-            {
-                byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-                StringBuilder sBuilder = new StringBuilder();
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuilder.Append(data[i].ToString("x2"));
-                }
-
-                return sBuilder.ToString();
-            }
-        }
-
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
             string oldPassword = OldPasswordBox.Password;
             string newPassword = NewPasswordBox.Password;
             string confirmPassword = ConfirmPasswordBox.Password;
 
-            string hashedOldPassword = ComputeMD5Hash(oldPassword);
+            string hashedOldPassword = Main.HashMD5(oldPassword);
 
             if (currentUser.password != hashedOldPassword)
             {
@@ -58,7 +42,7 @@ namespace OrderQuanNet.Views.components.popup
                 return;
             }
 
-            string hashedNewPassword = ComputeMD5Hash(newPassword);
+            string hashedNewPassword = Main.HashMD5(newPassword);
             currentUser.password = hashedNewPassword;
             var userService = new UsersService();
             bool updateSuccess = userService.Update(currentUser);
